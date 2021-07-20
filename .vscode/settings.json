@@ -1,0 +1,6 @@
+{
+  "C_Cpp.errorSquiggles": "Enabled",
+  "editor.tabSize": 2,
+  "editor.useTabStops": true,
+  "C_Cpp.intelliSenseEngineFallback": "Disabled"
+}
