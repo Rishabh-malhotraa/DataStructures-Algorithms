@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// components with n indegrees
+
 class Solution
 {
 public:

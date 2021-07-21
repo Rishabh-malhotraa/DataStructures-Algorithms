@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Dijkstra Algorithm
+
 class Solution
 {
 private:
