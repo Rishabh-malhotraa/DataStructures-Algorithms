@@ -1,10 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Disjoint union set
-
-// Number of components removed = (all components in group1 - 1) + (all components in group2 - 1) ....
-// Number of components removed = N - number of disjoint sets
+// Union Find on equations -> first process == and then !-
 
 class DisjointSet
 {
@@ -59,26 +56,34 @@ public:
 
 class Solution
 {
-private:
-  bool isConnected(vector<int> &a, vector<int> &b)
-  {
-    return (a[0] == b[0] || a[1] == b[1]);
-  }
-
 public:
-  int removeStones(vector<vector<int>> &stones)
+  bool equationsPossible(vector<string> &equations)
   {
-    int n = stones.size();
-    DisjointSet dsu(n);
+    int n = equations.size();
+    // * place all '==' before '!='
+    sort(equations.begin(), equations.end(), [](const string &s1, const string &s2)
+         { return s1[1] == '=' && s2[1] == '!'; });
+    DisjointSet dsu(26);
 
-    for (int i = 0; i < n; i++)
+    for (string &equation : equations)
     {
-      for (int j = i + 1; j < n; j++)
+      // cout << equation << endl;
+      char x = equation.front();
+      char y = equation.back();
+      string relation = equation.substr(1, 2);
+      if (relation == "==")
       {
-        if (isConnected(stones[i], stones[j]))
-          dsu.Union(i, j);
+        dsu.Union(x - 'a', y - 'a');
+      }
+      else
+      {
+        int parentA = dsu.find(x - 'a');
+        int parentB = dsu.find(y - 'a');
+
+        if (parentA == parentB)
+          return false;
       }
     }
-    return n - dsu.disjointSets();
+    return true;
   }
 };

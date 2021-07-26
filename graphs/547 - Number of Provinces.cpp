@@ -1,10 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Disjoint union set
-
-// Number of components removed = (all components in group1 - 1) + (all components in group2 - 1) ....
-// Number of components removed = N - number of disjoint sets
+// Disjoint Sets find number of connected comppnents
 
 class DisjointSet
 {
@@ -59,26 +56,20 @@ public:
 
 class Solution
 {
-private:
-  bool isConnected(vector<int> &a, vector<int> &b)
-  {
-    return (a[0] == b[0] || a[1] == b[1]);
-  }
-
 public:
-  int removeStones(vector<vector<int>> &stones)
+  int findCircleNum(vector<vector<int>> &isConnected)
   {
-    int n = stones.size();
+    int n = isConnected.size();
     DisjointSet dsu(n);
 
     for (int i = 0; i < n; i++)
     {
-      for (int j = i + 1; j < n; j++)
+      for (int j = 0; j < n; j++)
       {
-        if (isConnected(stones[i], stones[j]))
+        if (isConnected[i][j])
           dsu.Union(i, j);
       }
     }
-    return n - dsu.disjointSets();
+    return dsu.disjointSets();
   }
 };
