@@ -7,30 +7,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// All TC Passed : LC Solution
-
 class Solution
 {
 public:
-  int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid)
+  int largestRectangleArea(vector<int> &heights)
   {
-    int n = obstacleGrid.size(), m = obstacleGrid[0].size();
-    vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
-    dp[1][0] = 1;
-    for (int i = 1; i <= n; i++)
+    int n = heights.size();
+    stack<int> s;
+    int result = 0, prevIndex = 0, area = 0;
+
+    for (int i = 0; i <= n; i++)
     {
-      for (int j = 1; j <= m; j++)
+      int currHeight = (i == n) ? 0 : heights[i];
+      while (!s.empty() && currHeight < heights[s.top()])
       {
-        if (obstacleGrid[i - 1][j - 1] == 1)
-        {
-          dp[i][j] = 0;
-        }
-        else
-        {
-          dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-        }
+        int h = heights[s.top()];
+        s.pop();
+        prevIndex = s.empty() ? -1 : s.top();
+        area = (i - (prevIndex + 1)) * h;
+        result = max(result, area);
       }
+      s.push(i);
     }
-    return dp[n][m];
+    return result;
   }
 };
