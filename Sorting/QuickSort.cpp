@@ -7,15 +7,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
+class QuickSort
 {
 public:
-  bool canReach(vector<int> &arr, int start)
+  void quickSort(vector<int> &arr, int l, int r)
   {
-    if (start < 0 || start >= arr.size() || arr[start] < 0)
-      return false;
-    arr[start] *= -1; // flipping same as for visited = true
+    if (l > r)
+      return;
+    int pivot = 0;
 
-    return arr[start] == 0 || canReach(arr, start - arr[start]) || canReach(arr, start + arr[start]);
+    for (int i = l; i <= r; i++)
+      if (arr[i] >= arr[r])
+        swap(arr[pivot++], arr[i]);
+
+    pivot--;
+    quickSort(arr, l, pivot - 1);
+    quickSort(arr, pivot + 1, r);
   }
 };

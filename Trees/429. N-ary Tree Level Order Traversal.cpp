@@ -14,6 +14,8 @@ public:
   vector<Node *> children;
 };
 
+// More of a graph dfs problem than a tree problemo
+
 class Solution
 {
 public:

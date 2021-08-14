@@ -10,23 +10,25 @@ using namespace std;
 class Solution
 {
 public:
-  int maxProfit(vector<int> &prices, int k = 2)
+  vector<int> longestObstacleCourseAtEachPosition(vector<int> &obstacles)
   {
-    int n = prices.size();
-    if (n == 0)
-      return 0;
-
-    vector<vector<int>> dp(k + 1, vector<int>(n, 0));
-
-    for (int i = 1; i <= k; i++)
+    int n = obstacles.size();
+    vector<int> list, dp(n, 1);
+    list.push_back(obstacles[0]);
+    for (int i = 1; i < n; i++)
     {
-      int buyPrice = INT_MAX;
-      for (int j = 1; j < n; j++)
+      int idx = upper_bound(list.begin(), list.end(), obstacles[i]) - list.begin();
+      if (idx == list.size())
       {
-        buyPrice = min(buyPrice, prices[j - 1] - dp[i - 1][j - 1]);
-        dp[i][j] = max(dp[i][j - 1], prices[j] - buyPrice);
+        list.push_back(obstacles[i]);
+        dp[i] = list.size();
+      }
+      else
+      {
+        list[idx] = obstacles[i];
+        dp[i] = idx + 1;
       }
     }
-    return dp[k][n - 1];
-  }
+    return dp;
+  };
 };

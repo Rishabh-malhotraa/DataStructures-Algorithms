@@ -7,7 +7,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Dynamic Programming | Strings | ⭐⭐⭐⭐⭐
+// Dynamic Programming | Strings | ⭐⭐⭐⭐⭐ | Decision Making
 
 class Solution
 {

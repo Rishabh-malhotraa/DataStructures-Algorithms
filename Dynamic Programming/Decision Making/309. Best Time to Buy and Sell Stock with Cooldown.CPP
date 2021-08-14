@@ -10,23 +10,24 @@ using namespace std;
 class Solution
 {
 public:
-  int maxProfit(vector<int> &prices)
+  int maxProfit(vector<int> &prices, int cooldown = 1)
   {
+    if (prices.size() == 1)
+      return 0;
 
     int n = prices.size();
-    if (n == 0)
-      return 0;
-    vector<int> bs(n, 0);
-    vector<int> ss(n, 0);
-    vector<int> cds(n, 0);
+    vector<int> buy(n, 0);
+    vector<int> sell(n, 0);
 
-    bs[0] = -prices[0];
-    for (int i = 1; i < n; i++)
+    buy[0] = prices[0], buy[1] = min(prices[0], prices[1]);
+    sell[1] = max(0, prices[1] - buy[0]);
+
+    for (int i = 2; i < n; i++)
     {
-      bs[i] = max(bs[i - 1], -(prices[i] - cds[i - 1]));
-      ss[i] = max(ss[i - 1], prices[i] + bs[i - 1]);
-      cds[i] = max(cds[i - 1], ss[i - 1]);
+      buy[i] = min(buy[i - 1], prices[i] - sell[i - 1 - cooldown]);
+      sell[i] = max(sell[i - 1], prices[i] - buy[i - 1]);
     }
-    return ss[n - 1];
+
+    return sell.back();
   }
 };

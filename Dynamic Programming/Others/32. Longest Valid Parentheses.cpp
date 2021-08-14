@@ -10,26 +10,31 @@ using namespace std;
 class Solution
 {
 public:
-  vector<int> longestObstacleCourseAtEachPosition(vector<int> &obstacles)
+  int longestValidParentheses(string s)
   {
-    int n = obstacles.size();
-    vector<int> list, dp(n, 1);
-    list.push_back(obstacles[0]);
-    for (int i = 1; i < n; i++)
+    s = ")" + s;
+    int n = s.size(), result = 0;
+    vector<int> dp(n, 0);
+
+    for (int i = 2; i < n; i++)
     {
-      if (list.back() <= obstacles[i])
+      char curr = s[i], prev = s[i - 1];
+      int offset = dp[i - 1];
+      if (curr == ')')
       {
-        list.push_back(obstacles[i]);
-        dp[i] = list.size();
+        if (prev == '(')
+          dp[i] = 2 + dp[i - 2];
+        else if (prev == ')' && s[i - offset - 1] == '(')
+        {
+          dp[i] = dp[i - 1] + 2 + dp[i - offset - 2];
+        }
       }
       else
       {
-        int idx = upper_bound(list.begin(), list.end(), obstacles[i]) - list.begin();
-        // cout << idx << endl;
-        list[idx] = obstacles[i];
-        dp[i] = idx + 1;
+        dp[i] = 0;
       }
+      result = max(result, dp[i]);
     }
-    return dp;
-  };
+    return result;
+  }
 };

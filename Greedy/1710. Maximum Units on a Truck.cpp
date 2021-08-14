@@ -10,23 +10,28 @@ using namespace std;
 class Solution
 {
 public:
-  int maxProfit(vector<int> &prices, int k = 2)
+  int maximumUnits(vector<vector<int>> &boxTypes, int truckSize)
   {
-    int n = prices.size();
-    if (n == 0)
-      return 0;
+    sort(boxTypes.begin(), boxTypes.end(), [](vector<int> &a, vector<int> &b)
+         { return a[1] > b[1]; });
 
-    vector<vector<int>> dp(k + 1, vector<int>(n, 0));
+    int idx = 0, cost = 0;
 
-    for (int i = 1; i <= k; i++)
+    for (vector<int> boxType : boxTypes)
     {
-      int buyPrice = INT_MAX;
-      for (int j = 1; j < n; j++)
+      if (truckSize == 0)
+        return cost;
+      if (truckSize >= boxType[0])
       {
-        buyPrice = min(buyPrice, prices[j - 1] - dp[i - 1][j - 1]);
-        dp[i][j] = max(dp[i][j - 1], prices[j] - buyPrice);
+        truckSize -= boxType[0];
+        cost += boxType[0] * boxType[1];
+      }
+      else
+      {
+        cost += truckSize * boxType[1];
+        truckSize = 0;
       }
     }
-    return dp[k][n - 1];
+    return cost;
   }
 };
