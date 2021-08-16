@@ -2,12 +2,10 @@
 
 # Overview
 
-I use this repository to document of Leetcode and codeforces Problem I solve everyday. Note that this is a publish-only repository, so all pull requests will be ignored.
+I use this repository to document of Leetcode and codeforces Problem I solve everyday.
 
 The **folders structure** is following:
 
-- [`data strucutre / algorithm`](./notebook): Contains solutions of all the problems I have solved of that mentions DSA
-<!--
 - [`scripts`](./scripts): small scripts for automatizing some repetitive tasks.
 - [`solutions`](./solutions): code of accepted problems, categorized by online judges.
   - [`README.md`](./solutions/README.md): solutions index by themes, containing difficulty, name, description and hint of the problem.
@@ -17,34 +15,49 @@ The **folders structure** is following:
 
 ## 🧱 data structures
 
-- [arrays](./arrays)
-- [graphs](./graphs)
-- [sparse table](./notebook/data-structures/sparse-table.cpp)
-- [union-find disjoint sets (UFDS)](./notebook/data-structures/ufds.cpp)
-  <!-- - SQRT decomposition https://www.spoj.com/problems/RACETIME/en/ -->
+- [Arrays](./Arrays)
+- [Strings](./Strings)
+- [Stacks & Queues](./Stacks%20%26%20Queues)
+- [Hash Map](./notebook/data-structures/ufds.cpp)
+- [Trees](./Trees)
+- [Graphs](./Graphs)
+- [Tries](./Tries)
   <!-- - Wavelet tree https://github.com/andrefakhoury/competitive-programming/blob/master/lib/DataStructures/WaveletTree.hpp -->
 
 ## Algorithms
 
 - [Binary Search](./Binary%20Search)
+- [DFS & BFS](./DFS%20%26%20BFS)
+- [Sorting](./Sorting)
+- [Backtracking](./Backtracking)
 
-## 🥊 brute force
+### 🔞 dynamic programming
 
-- []()
-
-## 🔞 dynamic programming
-
-- [coin change](./notebook/dynamic-programming/coin-change.cpp)
-- [subset sum](./notebook/dynamic-programming/subset-sum.cpp)
-- [0-1 knapsack](./notebook/dynamic-programming/0-1-knapsack.cpp)
-- [edit distance](./notebook/dynamic-programming/edit-distance.cpp)
-- [longest increasing subsequence (LIS)](./notebook/dynamic-programming/lis.cpp)
-- [longest common subsequence (LCS)](./notebook/dynamic-programming/lcs.cpp)
-  - [LCS reduced to LIS](./notebook/dynamic-programming/lcs-reduced-to-lis.cpp)
-- [longest palindromic subsequence (LPS)](./notebook/dynamic-programming/lps.cpp)
-- [traveling salesman problem (TSP)](./notebook/dynamic-programming/tsp.cpp)
-- [matrix chain multiplication (MCM)](./notebook/dynamic-programming/mcm.cpp)
-- [rod cutting](./notebook/dynamic-programming/rod-cutting.cpp)
+- [Decision Making](./Dynamic%20Programming/Decision%20Making)
+  - Knapsack and its Variations
+  - Buy and sell Stock I - V
+- [DP on Strings](./Dynamic%20Programming/DP%20on%20Strings)
+  - Longest common subsequence and its variation
+  - Pattern Matching
+- [DP on Grid](./Dynamic%20Programming/DP%20on%20Grid)
+  - Ways to reach end point in a grid
+  - Cherry Pickup + Dungeoun Game
+- [DP on Row](./Dynamic%20Programming/DP%20on%20Row)
+  - Jump Game I - V
+  - Climbing Stairs
+  - Fibonacci Type Questions
+- [Longest Increasing Subsequence](./Dynamic%20Programming/Longest%20Increasing%20Subsequence)
+  - FIND LIS
+  - Russion Doll Variations -> LIS on two variables
+- [Merge Intervals](./Dynamic%20Programming/Merge%20Intervals)
+  - Burst Ballons
+  - Remove Boxes
+- [Optimal Game Strategy](./Dynamic%20Programming/Optimal%20Game%20Strategy)
+  - Stone Game I-VII
+- [Others](./Dynamic%20Programming/../Dynamic%20Programming/Others)
+  - Word Break
+  - Knight Dialer
+  - Largest Rectangle
 
 ## 🌍 graphs
 
