@@ -18,3 +18,7 @@
 - TC : 5/14 Passed!
 
 ---
+
+## UPDATE
+
+Kinda salty that I wasn't shortlisted, but funny enough the company **_did not even take a single candidate from our college_**, I seriously feel I could have done something in the interviews had I been shortlisted, man these dweebs aren't on my level tbh! frfr `-_-`

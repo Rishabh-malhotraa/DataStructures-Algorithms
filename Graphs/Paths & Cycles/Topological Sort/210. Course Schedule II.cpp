@@ -10,49 +10,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+enum State
+{
+  UNVISITED,
+  PROCESSING,
+  VISITED
+};
+
 class Solution
 {
-public:
+private:
   vector<int> result;
-
-  bool acyclic(vector<list<int>> &adjMatrix, vector<bool> &visited, unordered_set<int> cache, int node)
+  bool acyclic(int &node, vector<list<int>> &adjList, vector<State> &visited)
   {
-    // if the node is in the cache return false
-    if (cache.count(node))
-      return false;
-
-    if (visited[node] == true)
+    if (visited[node] == VISITED)
       return true;
 
-    visited[node] = true;
-    cache.insert(node);
+    visited[node] = PROCESSING;
 
-    for (int neighbour : adjMatrix[node])
-      if (acyclic(adjMatrix, visited, cache, neighbour) == false)
+    for (int neighbour : adjList[node])
+    {
+      if (visited[neighbour] == PROCESSING)
         return false;
-
+      if (visited[neighbour] == UNVISITED && !acyclic(neighbour, adjList, visited))
+        return false;
+    }
+    visited[node] = VISITED;
     result.push_back(node);
-    cache.erase(node);
     return true;
   }
 
+public:
   vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
   {
-    vector<list<int>> adjMatrix(numCourses);
+    vector<list<int>> adjList(numCourses);
 
     for (vector<int> &course : prerequisites)
     {
       int u = course[0], v = course[1];
-      adjMatrix[v].push_back(u);
+      adjList[v].push_back(u);
     }
 
-    vector<bool> visited(numCourses, false);
-    unordered_set<int> cache;
+    vector<State> visited(numCourses, UNVISITED);
     for (int node = 0; node < numCourses; node++)
-    {
-      if (visited[node] == false && acyclic(adjMatrix, visited, cache, node) == false)
+      if (visited[node] == false && acyclic(node, adjList, visited) == false)
         return {};
-    }
+
     reverse(result.begin(), result.end());
     return result;
   }

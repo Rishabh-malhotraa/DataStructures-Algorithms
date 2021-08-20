@@ -27,3 +27,7 @@
   - I was able to solve almost two questions in 45 minutes, it was good but I don't know if I strictly need to solve 2 question, so I cant be very certain but I am hopeful of getting another interview call 🤞🏻
 
 ---
+
+## UPDATE 19-8-21 REJECTED `T-T`
+
+I got the mail from the HR, and apparently they don't have any roles that match with my desired skill, bummer because I felt the interview went amazing, I mean I couldn't have done any better, but it is what it is, on to the next one :3
