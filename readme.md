@@ -62,21 +62,32 @@ The **folders structure** is following:
 ## 🌍 graphs
 
 - [data structures representation](./notebook/graphs/ds-representation.md)
-- **traversal**
-  - [depth-first search (DFS)](./notebook/graphs/dfs.cpp)
-  - [breadth-first search (BFS)](./notebook/graphs/bfs.cpp)
-  - [flood fill](./notebook/graphs/flood-fill.cpp)
-  - [edge classification](./notebook/graphs/edge-classification.cpp)
-  - [bridges and articulations points](./notebook/graphs/bridges-and-articulations.cpp)
-  - [strongly connected components (SCC)](./notebook/graphs/scc.cpp)
-  - **topological sorting**
-    - [kahn](./notebook/graphs/topo-sort-kahn.cpp)
-    - [naive](./notebook/graphs/topo-sort.cpp)
-- **minimum spanning tree (MST)**
-  - [kruskal](./notebook/graphs/mst-kruskal.cpp)
-  - **variants**
-    - [minimax path](./notebook/graphs/mst-minimax-path.cpp)
-    <!--TODO - [2nd best MST](./notebook/graphs/mst-2nd-best.cpp) -->
+- [Traversals on Graphs](./Graphs/Traversals%20on%20Graphs)
+  - Breadth First Search
+  - Depth First Search
+  - Bi-Directional BFS
+- [Paths & Cycles](./Graphs/Paths%20%26%20Cycles)
+  - [Topological Sort](./Graphs/Paths%20%26%20Cycles/Topological%20Sort)
+    - Kahns Algorithms
+    - DFS with postorder Stack.
+  - Eulerian Circuit
+  - Bipartite (m-coloring problem)
+  - Eventual Safe states (nodes which are in a cycle)
+- [Union Find](./Graphs/Union%20Find)
+  - [Disjoint Set Class](./Graphs/Union%20Find/0.%20Disjoint%20Set.cpp)
+  - Number of Islands
+  - Accounts Merge
+  - Region Cut By Slashes
+  - Satisfiability of Equality Equations
+- [Shortest Distance & MST](./Graphs/Shortest%20Distance%20%26%20MST)
+  - Breadth First Search (+ Bidirectional)
+  - Dijsktra Algorithms
+  - Bi Directional Dijsktra
+  - A\* Algorithm
+  - Bellman Ford
+  - Floyd Warshall
+  - Prims Algorithms
+  - Kruskals Algorithms
 - **network flow**
   - [max flow w/ edmonds karp](./notebook/graphs/edmonds-karp.cpp)
   - [min cost max flow](./notebook/graphs/mcmf.cpp)
