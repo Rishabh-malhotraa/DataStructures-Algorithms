@@ -16,4 +16,4 @@
 12. Kruskals
 13. Trie
 14. Euler's and Hamilton's algo
-15. Ford-Fulkerson Algorithm
+15. Ford-Fulkerson Algorithm (Max Flow)
