@@ -32,3 +32,25 @@ public:
     return result;
   }
 };
+
+// --------------------------------
+
+// using Bit masking TC: O(n*2^n)
+class Solution
+{
+  vector<vector<int>> subsets(vector<int> &nums)
+  {
+    int n = 1 << nums.size();
+    vector<vector<int>> result;
+    for (int i = 0; i < n; i++)
+    {
+      vector<int> subset;
+      for (int j = 0; j < nums.size(); j++)
+        if ((1 << j) & i)
+          subset.push_back(nums[i]);
+
+      result.push_back(subset);
+    }
+    return result;
+  }
+};
