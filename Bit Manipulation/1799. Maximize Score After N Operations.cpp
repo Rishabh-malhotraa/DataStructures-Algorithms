@@ -10,40 +10,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/* BITMASKING -> BECAUSE YOU REMOVE CERTAIN ELEMENT FROM A SET
-
-* Recursive DFS SOLUTION
-* YOU NEED TO CHECK FOR ALL AVAILABLE PAIRS DURING RECURSSION
-
-
-*/
-
 class Solution
 {
-public:
+private:
+  int n;
   vector<unordered_map<int, int>> dp;
-  int dfs(vector<int> &n, int i, int mask)
+  int dfs(vector<int> &nums, int i, int mask)
   {
-    if (i > n.size() / 2)
+    if (i > (n / 2))
       return 0;
 
     if (dp[i].find(mask) != dp[i].end())
       return dp[i][mask];
 
     int cost = 0;
-    for (int j = 0; j < n.size(); ++j)
-      for (auto k = j + 1; k < n.size(); ++k)
+    for (int j = 0; j < n; j++)
+    {
+      for (int k = j + 1; k < n; k++)
       {
-        int new_mask = (1 << j) + (1 << k);
-        if ((mask & new_mask) == 0)
-          cost = max(cost, i * __gcd(n[j], n[k]) + dfs(n, i + 1, mask + new_mask));
+        int new_mask = (1 << j) | (1 << k);
+
+        if (((1 << j) & mask) && ((1 << k) & mask))
+        {
+          int value = i * __gcd(nums[j], nums[k]);
+          cost = max(cost, value + dfs(nums, i + 1, mask ^ new_mask));
+        }
       }
+    }
     return dp[i][mask] = cost;
   }
 
-  int maxScore(vector<int> &n)
+public:
+  int maxScore(vector<int> &nums)
   {
-    dp.resize(n.size() + 1);
-    return dfs(n, 1, 0);
+    n = nums.size();
+    dp.resize(n);
+    return dfs(nums, 1, (1 << n) - 1);
   }
 };
