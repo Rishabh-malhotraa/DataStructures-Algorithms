@@ -27,6 +27,10 @@ function isValid(stale: string, latest: string, otjson: string): boolean {
 class OperationTransformation {
   private cursorPosition = 0;
 
+  OperationTransformation(initialPosition = 0) {
+    this.cursorPosition = initialPosition;
+  }
+
   // update the cursor position
   public skip(text: string, count: number) {
     // truncates count + cusorPosition if it goes beyond text.size()
