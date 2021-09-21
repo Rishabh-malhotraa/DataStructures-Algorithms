@@ -50,6 +50,13 @@ const createDelete = (count: number): OTOp => {
 }
 
 
+// skip - backspace - append   -->  delete  || insert 
+// skip - append - backspace   -->  skip    || insert  
+// backspace - skip - append   -->  skip    || insert
+// backspace - append - skip   -->  insert  || skip
+// append - skip - backspace   -->  insert  || delete
+// append - backspace - skip   -->  insert  || skip
+
 function keystrokesToOTs(document: string, keystrokes: Array<Keystroke>): Array<OTOp> {
   // you write this!
   let word: string = "";
@@ -58,41 +65,41 @@ function keystrokesToOTs(document: string, keystrokes: Array<Keystroke>): Array<
   let deleteWord: number = 0;
   let otjson = [] as OTOp[];
 
-  // skip - backspace - append   -->  delete  || insert 
-  // skip - append - backspace   -->  skip    || insert  
-  // backspace - skip - append   -->  skip    || insert
-  // backspace - append - skip   -->  insert  || skip
-  // append - skip - backspace   -->  insert  || delete
-  // append - backspace - skip   -->  insert  || skip
 
+  const pushSkipDeleteObject = () => {
+    if (count != 0 ) {
+      if(deleteWord == 0){ 
+        otjson.push(createSkip(count));
+      } else { 
+        otjson.push(createDelete(deleteWord))
+      }
+      deleteWord = count = 0;
+    }
+  }
+
+  const pushInsertObject = () => {
+    if (word.length > 0) {
+      otjson.push(createInsert(word));
+      word = "";
+    }
+  }
 
   for (let keystroke of keystrokes) {
 
     if ("append" in keystroke) {
-      if (count != 0 && deleteWord == 0) {
-        otjson.push(createSkip(count));
-        count = 0;
-      }
-      if (count != 0 && deleteWord != 0) {
-        otjson.push(createDelete(deleteWord))
-        count = 0;
-        deleteWord = 0;
-      }
-      word += keystroke.append;
+      pushSkipDeleteObject();
+      word = word + keystroke.append;
     }
 
     else if ("backspace" in keystroke) {
       if (word.length + document.length > 0) {
         word = word.substr(0, word.length - 1) // abc => ab 
-        deleteWord += 1;
+        deleteWord = deleteWord + 1;
       }
     }
 
     else if ("right" in keystroke) {
-      if (word.length > 0) {
-        otjson.push(createInsert(word));
-        word = "";
-      }
+      pushInsertObject();
       if (cursor + 1 <= document.length + word.length) {
         cursor = cursor + 1;
         count = count + 1;
@@ -100,18 +107,8 @@ function keystrokesToOTs(document: string, keystrokes: Array<Keystroke>): Array<
     }
   }
 
-  if (word.length > 0)
-    otjson.push(createInsert(word));
-
-  if (count != 0 && deleteWord == 0) {
-    otjson.push(createSkip(count));
-    count = 0;
-  }
-  if (count != 0 && deleteWord > 0) {
-    otjson.push(createDelete(deleteWord))
-    count = 0;
-    deleteWord = 0;
-  }
+  pushInsertObject();
+  pushSkipDeleteObject();
 
   return otjson;
 }
