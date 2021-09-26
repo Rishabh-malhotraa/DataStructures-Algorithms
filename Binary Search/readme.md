@@ -195,7 +195,7 @@ if (target > nums[mid]) {
 
 So when your binary search is stuck, think of the situation when there are only 2 elements left. Did the boundary shrink correctly?
 
-## TD;DR
+## TL;DR
 
 My rule of thumb when it comes to binary search:
 
