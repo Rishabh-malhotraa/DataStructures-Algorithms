@@ -1,4 +1,5 @@
 import * as assert from 'assert';
+import * as chalk from 'chalk';
 
 type Keystroke = {
   append: string
@@ -50,12 +51,12 @@ const createDelete = (count: number): OTOp => {
 }
 
 
-// skip - backspace - append   -->  delete  || insert 
-// skip - append - backspace   -->  skip    || insert  
-// backspace - skip - append   -->  skip    || insert
-// backspace - append - skip   -->  insert  || skip
-// append - skip - backspace   -->  insert  || delete
-// append - backspace - skip   -->  insert  || skip
+// skip - backspace - append   -->  delete  ||  insert 
+// skip - append - backspace   -->  skip    ||  insert  
+// backspace - skip - append   -->  skip    ||  insert
+// backspace - append - skip   -->  insert  ||  skip
+// append - skip - backspace   -->  insert  ||  delete
+// append - backspace - skip   -->  insert  ||  skip
 
 function keystrokesToOTs(document: string, keystrokes: Array<Keystroke>): Array<OTOp> {
   // you write this!
@@ -63,16 +64,19 @@ function keystrokesToOTs(document: string, keystrokes: Array<Keystroke>): Array<
   let cursor: number = 0;
   let count: number = 0;
   let deleteWord: number = 0;
-  let otjson = [] as OTOp[];
+  let otjson : OTOp[] = [] ;
 
 
-  const pushSkipDeleteObject = () => {
-    if (count != 0 ) {
-      if(deleteWord == 0){ 
-        otjson.push(createSkip(count));
-      } else { 
-        otjson.push(createDelete(deleteWord))
-      }
+  const pushSkipObject = () => {
+    if (count != 0 && deleteWord == 0) {
+      otjson.push(createSkip(count));
+      deleteWord = count = 0;
+    }
+  }
+
+  const pushDeleteObject = () => {
+    if (count != 0 && deleteWord != 0) {
+      otjson.push(createDelete(deleteWord))
       deleteWord = count = 0;
     }
   }
@@ -87,13 +91,18 @@ function keystrokesToOTs(document: string, keystrokes: Array<Keystroke>): Array<
   for (let keystroke of keystrokes) {
 
     if ("append" in keystroke) {
-      pushSkipDeleteObject();
+      pushSkipObject();
+      pushDeleteObject();
       word = word + keystroke.append;
     }
 
     else if ("backspace" in keystroke) {
       if (word.length + document.length > 0) {
-        word = word.substr(0, word.length - 1) // abc => ab 
+        if (word.length)
+          word = word.substr(0, word.length - 1) // abc => ab 
+        else
+          document = document.substr(0, document.length - 1);
+
         deleteWord = deleteWord + 1;
       }
     }
@@ -108,7 +117,8 @@ function keystrokesToOTs(document: string, keystrokes: Array<Keystroke>): Array<
   }
 
   pushInsertObject();
-  pushSkipDeleteObject();
+  pushSkipObject();
+  pushDeleteObject();
 
   return otjson;
 }
@@ -124,7 +134,7 @@ function checkKeystrokesToOTs(document: string, keystrokes: Array<Keystroke>, ex
   const expected = JSON.stringify(expectedOTs);
 
   const match = expected === converted;
-  console.log(`${match ? 'pass' : 'fail'} keystrokesToOTs("${document}", ${JSON.stringify(keystrokes)}) -> ${converted})`);
+  console.log(`${match ? chalk.green('✔ pass') : chalk.red('❌ fail')} keystrokesToOTs("${document}", ${JSON.stringify(keystrokes)}) -> ${converted})`);
   assert.strictEqual(converted, expected);
 }
 
@@ -145,3 +155,5 @@ checkKeystrokesToOTs('a', [{ 'right': true }, { 'append': 'b' }], [{ 'op': 'skip
 checkKeystrokesToOTs('a', [{ 'right': true }, { 'backspace': true }], [{ 'op': 'delete', 'count': 1 }]);
 checkKeystrokesToOTs('a', [{ 'right': true }, { 'right': true }, { 'append': 'b' }], [{ 'op': 'skip', 'count': 1 }, { 'op': 'insert', 'chars': 'b' }]);
 checkKeystrokesToOTs('ac', [{ 'right': true }, { 'append': 'b' }, { 'right': true }, { 'append': 'd' }], [{ 'op': 'skip', 'count': 1 }, { 'op': 'insert', 'chars': 'b' }, { 'op': 'skip', 'count': 1 }, { 'op': 'insert', 'chars': 'd' }]);
+
+// Stress Testing Test CASSES

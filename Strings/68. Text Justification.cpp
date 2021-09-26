@@ -39,7 +39,7 @@ private:
       }
       else
       {
-        lines.push_back({maxWidth - count - 1, line});
+        lines.push_back({maxWidth - count + 1, line});
         line.clear();
         count = 0;
       }
@@ -54,10 +54,10 @@ private:
   {
     string leftJustifiedText;
 
-    for (int i = 0; i < line.words.size(); i++)
+    for (string &word : line.words)
     {
-      string space = (i == line.words.size() - 1) ? "" : " ";
-      leftJustifiedText += line.words[i] + space;
+      string space = (&word == &line.words.back() ? "" : " ");
+      leftJustifiedText += word + space;
     }
 
     leftJustifiedText += string(line.extraSpaces, ' ');
@@ -69,18 +69,18 @@ private:
     string justifiedText = "";
     int divisor = max((int)(line.words.size() - 1), 1);
 
-    int spacesAddAll = (line.extraSpaces / divisor);
+    int spacesAddAll = 1 + (line.extraSpaces / divisor);
     int spacesAddLeft = (line.extraSpaces % divisor);
 
-    for (int j = 0; j < line.words.size(); j++)
+    for (string &word : line.words)
     {
       string spaces = "";
       int leftAdd = (spacesAddLeft-- > 0) ? 1 : 0;
 
-      if (j != line.words.size() - 1)
-        spaces = string(1 + spacesAddAll + leftAdd, ' ');
+      if (&word != &line.words.back())
+        spaces = string(spacesAddAll + leftAdd, ' ');
 
-      justifiedText += line.words[j] + spaces;
+      justifiedText += word + spaces;
     }
     return justifiedText;
   }
@@ -90,13 +90,13 @@ public:
   {
     vector<TextJustify> lines = getLines(words, maxWidth);
     vector<string> result;
-    for (int i = 0; i < lines.size(); i++)
+    for (TextJustify &line : lines)
     {
       string text;
-      if (i == lines.size() - 1 || lines[i].words.size() == 1)
-        text = leftJustify(lines[i]);
+      if (&line == &lines.back() || line.words.size() == 1)
+        text = leftJustify(line);
       else
-        text = centerJustify(lines[i]);
+        text = centerJustify(line);
 
       result.push_back(text);
     }
