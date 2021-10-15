@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <set>
+#include <cmath>
 
 using namespace std;
 
@@ -47,46 +48,26 @@ X
 
 1 2 3
 4 5 6
-7 8 X X X 9
+7 8 X  X X 9
 
 */
 
 const int n = 9;
 
-bool isValid(vector<vector<char>> grid)
+bool isValid(vector<vector<char>> &board, int i, int j, char val)
 {
-  vector<set<int>> rows(n), cols(n), subgrid(n);
+  int row = (i/3)*3, column = (j/3)*3;
+  for (int x = 0; x < 9; x++)
+    if (board[x][j] == val)
+      return false;
+  for (int y = 0; y < 9; y++)
+    if (board[i][y] == val)
+      return false;
 
-  for (int i = 0; i < n; i++)
-  {
-    for (int j = 0; j < n; j++)
-    {
-      char ch = grid[i][j];
-
-      int num = ch - '0';
-
-      int subgrid_i = (i / 3), subgrid_j = j / 3;
-
-      int idx = (subgrid_i)*3 + subgrid_j;
-
-      if (ch == '.')
-        continue;
-
-      if (rows[i].find(num) != rows[i].end())
+  for (int x = 0; x < 3; x++)
+    for (int y = 0; y < 3; y++)
+      if (board[row + x][column + y] == val)
         return false;
-
-      if (cols[i].find(num) != cols[j].end())
-        return false;
-
-      if (subgrid[idx].find(num) != subgrid[idx].end())
-        return false;
-
-      rows[i].insert(num);
-      cols[j].insert(num);
-      subgrid[idx].insert(num);
-    }
-  }
-
   return true;
 }
 
@@ -106,14 +87,14 @@ bool dfs(int idx, vector<vector<char>> &grid)
   {
     for (int k = 1; k <= 9; k++)
     {
-      grid[i][j] = k + '0';
-      if (isValid(grid))
+      if (isValid(grid, i, j, '0' + k))
       {
+        grid[i][j] = '0' + k;
         bool flag = dfs(idx + 1, grid);
         if (flag)
           return true;
+        grid[i][j] = '.';
       }
-      grid[i][j] = '.';
     }
   }
 
@@ -131,3 +112,40 @@ int main()
 
   return 0;
 }
+
+// bool isValid(vector<vector<char>> grid)
+// {
+//   vector<set<int>> rows(n), cols(n), subgrid(n);
+
+//   for (int i = 0; i < n; i++)
+//   {
+//     for (int j = 0; j < n; j++)
+//     {
+//       char ch = grid[i][j];
+
+//       int num = ch - '0';
+
+//       int subgrid_i = (i / 3), subgrid_j = j / 3;
+
+//       int idx = (subgrid_i)*3 + subgrid_j;
+
+//       if (ch == '.')
+//         continue;
+
+//       if (rows[i].find(num) != rows[i].end())
+//         return false;
+
+//       if (cols[i].find(num) != cols[j].end())
+//         return false;
+
+//       if (subgrid[idx].find(num) != subgrid[idx].end())
+//         return false;
+
+//       rows[i].insert(num);
+//       cols[j].insert(num);
+//       subgrid[idx].insert(num);
+//     }
+//   }
+
+//   return true;
+// }
