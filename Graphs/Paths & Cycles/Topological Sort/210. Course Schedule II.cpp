@@ -23,8 +23,9 @@ private:
   vector<int> result;
   bool acyclic(int &node, vector<list<int>> &adjList, vector<State> &visited)
   {
-    if (visited[node] == VISITED)
-      return true;
+    // we dont need to check this this condition would always be false
+    // if (visited[node] == VISITED)
+    //   return true;
 
     visited[node] = PROCESSING;
 

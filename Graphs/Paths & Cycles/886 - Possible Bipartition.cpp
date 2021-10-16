@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// DFS Methof of coloring the graph
+// DFS Method of coloring the graph
 
 class Solution
 {

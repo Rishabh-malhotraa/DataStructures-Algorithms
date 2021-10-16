@@ -18,6 +18,14 @@ if you fail to find an node with indegree 0 then a cycle exist!!!
 
 */
 
+/*
+ 1 -> 2  -> 3
+      ^     |
+      |     v
+      6 <-  4
+
+*/
+
 enum State
 {
   UNVISITED,
@@ -30,9 +38,6 @@ class Solution
 private:
   bool acyclic(int &node, vector<list<int>> &adjList, vector<State> &visited)
   {
-    if (visited[node] == VISITED)
-      return true;
-
     visited[node] = PROCESSING;
 
     for (int neighbour : adjList[node])

@@ -2,6 +2,7 @@
 using namespace std;
 
 // BFS method of finding bipartite but coloring leads to a better looking code
+// WHAT BRUH?? this is way worse than dfs lol EDIT: 15-10-21
 
 class Solution
 {
