@@ -91,16 +91,14 @@ bool checkDiagonal(int row, int col, const vector<vector<int>> &arr)
 {
   int initialValue = arr[row][col];
   for (int i = row, j = col; isValid(i, j); i++, j++)
-  {
     if (arr[i][j] != initialValue)
       return false;
-  }
+
   return true;
 }
 
 bool isToeplitz(const vector<vector<int>> &arr)
 {
-
   m = arr.size(), n = arr[0].size();
 
   bool result = true;
@@ -126,12 +124,8 @@ bool Toeplitz(list<tuple<int, int, int>> grid, int m, int n)
 {
   unordered_map<int, pair<int, int>> intercept;
 
-  for (tuple<int, int, int> &el : grid)
+  for (auto &[y, x, val] : grid)
   {
-    int y = get<0>(el);
-    int x = get<1>(el);
-    int val = get<2>(el);
-
     int c = y - x;
     if (intercept.find(c) == intercept.end())
       intercept.insert({c, {val, 1}});
