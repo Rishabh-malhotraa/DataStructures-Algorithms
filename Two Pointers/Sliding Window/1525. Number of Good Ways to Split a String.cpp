@@ -1,43 +1,18 @@
+/*
+ ____  _     _           _     _       __  __       _ _           _
+|  _ \(_)___| |__   __ _| |__ | |__   |  \/  | __ _| | |__   ___ | |_ _ __ __ _
+| |_) | / __| '_ \ / _` | '_ \| '_ \  | |\/| |/ _` | | '_ \ / _ \| __| '__/ _` |
+|  _ <| \__ \ | | | (_| | |_) | | | | | |  | | (_| | | | | | (_) | |_| | | (_| |
+|_| \_\_|___/_| |_|\__,_|_.__/|_| |_| |_|  |_|\__,_|_|_| |_|\___/ \__|_|  \__,_|
+
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
-// BARE BONE DSU
-
-class DisjointSet
+void fizzBuzz(int n)
 {
-private:
-  vector<int> parent;
-  vector<int> rank;
-
-public:
-  DisjointSet(int N)
-  {
-    parent.assign(N, -1);
-    rank.assign(N, 1);
-  }
-
-  int find(int u)
-  {
-    if (parent[u] == -1)
-      return u;
-
-    return parent[u] = find(parent[u]);
-  }
-
-  void Union(int u, int v)
-  {
-    u = find(u);
-    v = find(v);
-
-    if (u == v)
-      return;
-
-    parent[v] = u;
-    rank[u] += rank[v];
-  }
-};
-
-// == DETAILED UNION FIND :-) ==
+}
 
 class DisjointSet
 {
@@ -109,3 +84,32 @@ public:
     return *max_element(rank.begin(), rank.end());
   }
 };
+
+void solve()
+{
+  int n;
+  cin >> n;
+  vector<int> arr(n);
+  for (int i = 0; i < n; i++)
+    cin >> arr[i];
+
+  return;
+}
+
+int main()
+{
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
+
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    solve();
+  }
+  return 0;
+}
