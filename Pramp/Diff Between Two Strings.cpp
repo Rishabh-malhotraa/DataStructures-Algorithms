@@ -197,7 +197,7 @@ int main()
 }
 
 /*
- {} A B D F F G H   /// target
+   {} A B D F F G H   /// target
 {}  0 1 2 3 4 5 6 7
 A   1 0 1 2 3 4 5 6
 B   2 1 0 1 2 3 4 5
