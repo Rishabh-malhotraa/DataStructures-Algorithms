@@ -14,7 +14,7 @@ using namespace std;
 // The question becomes diffult because we want to check quality of two hasmaps in O(1) time
 
 /*
-we are given a list of characters 
+we are given a list of characters
 
 1. can we have duplicates in the list of characters
 
@@ -34,7 +34,7 @@ freq of z = 1
 this could be a possible result
 
 TC: O(2N) => O(N)
-SC: 
+SC:
 
 
 
