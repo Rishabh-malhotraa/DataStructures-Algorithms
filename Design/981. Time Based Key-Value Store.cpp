@@ -46,7 +46,6 @@ public:
 
     int n = timestamps.size();
     int l = 0, r = n - 1;
-    // finding the lower bound
     while (l < r)
     {
       int mid = unsigned(l + r) >> 1;

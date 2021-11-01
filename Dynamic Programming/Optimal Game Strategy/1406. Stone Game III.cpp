@@ -6,6 +6,40 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+// You don't need suffix unless you would like to make the
+// approach more clean
+/*
+  X X X
+  X X
+  X
+  1 2 3 7 10000
+
+
+
+  X  X X [X X X]
+
+
+  dp[][]
+
+
+
+    1   [1 2]  [1 2 3 ]
+       2  [2 3]  [2 3 7]
+          3  [3 7]
+             7
+
+     1 3 6 6
+       2 5 12
+         3 10
+           7
+
+Alice -> 1  {}      Alice -> 2
+    Bob->{}            Bob->{}
+       ...
+          ..
+    [10,11,12,...]     [10,11,12,...]
+
+*/
 
 class Solution
 {
