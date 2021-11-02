@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/*
-Solution 1 only add the increasing slopes
+// Solution 1 only add the increasing slopes
 
 class Solution
 {
@@ -16,8 +15,6 @@ public:
     return sum;
   }
 };
-
-*/
 
 class Solution
 {
