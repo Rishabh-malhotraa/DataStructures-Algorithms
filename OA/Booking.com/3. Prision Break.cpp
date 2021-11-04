@@ -41,16 +41,8 @@ public:
       return;
     else
     {
-      if (rank[u] > rank[v])
-      {
-        parent[v] = u;
-        rank[u] += rank[v];
-      }
-      else
-      {
-        parent[u] = v;
-        rank[v] += rank[u];
-      }
+      parent[v] = u;
+      rank[u] += rank[v];
     }
   }
   int getMaxRank()

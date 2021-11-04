@@ -21,22 +21,29 @@ public:
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-// Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+// if you are uncomfortable in talking through stringstream
+// you can use queue data strucuture after you push all the , seperated values
+// in the queue and start popping the top element!
 
+/*
+Serialization is the process of converting a data structure or object into a sequence
+of bits so that it can be stored in a file or memory buffer, or transmitted across a
+network connection link to be reconstructed later in the same or another computer environment.
+*/
 class Codec
 {
 public:
-  char delimeter = ',';
+  char delimeter = '|';
+  char nullDelimeter = 'X';
   // Encodes a tree to a single string.
   string serialize(TreeNode *root)
   {
     if (root == NULL)
-      return string(1, delimeter);
+      return string(1, nullDelimeter);
 
-    string leftSubtree = serialize(root->left);
-    string rightSubtree = serialize(root->right);
+    string hashString = to_string(root->val) + string(1, delimeter) + serialize(root->left) + string(1, delimeter) + serialize(root->right);
 
-    return to_string(root->val) + delimeter + leftSubtree + rightSubtree;
+    return hashString;
   }
 
   // Decodes your encoded data to tree.
@@ -51,10 +58,12 @@ public:
   {
     string token;
     getline(ss, token, delimeter);
-    if (token == "")
+
+    if (token == "X")
       return NULL;
 
     TreeNode *node = new TreeNode(stoi(token));
+
     node->left = buildTree(ss);
     node->right = buildTree(ss);
 
