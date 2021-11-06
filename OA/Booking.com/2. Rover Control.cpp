@@ -33,7 +33,7 @@ int roverMove(int matrixSize, vector<string> cmds)
 {
   n = matrixSize;
 
-  pair<int, int> coord = {0, 0};
+  pair<int, int> coord = make_pair(0, 0);
 
   for (string cmd : cmds)
   {
