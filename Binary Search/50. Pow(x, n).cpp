@@ -12,6 +12,34 @@ class Solution
 public:
   double myPow(double x, int n)
   {
+
+    long power = n;
+    double result = 1.0;
+    if (n < 0)
+    {
+      x = 1 / x;
+      power = -power;
+    }
+
+    for (long i = power; i > 0; i /= 2)
+    {
+      // in odd case we merge x
+      if (i % 2 == 1)
+      {
+        result = result * x;
+      }
+      x = x * x;
+    }
+    return result;
+  }
+};
+
+// TRASH SOLUTION MAKES NO SENSE
+class Solution
+{
+public:
+  double myPow(double x, int n)
+  {
     int sign = (n > 0 ? 1 : -1);
     long long power = abs(n);
     double result = 1.0;

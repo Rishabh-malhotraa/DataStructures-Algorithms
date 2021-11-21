@@ -14,6 +14,27 @@ class Solution
 public:
   int jump(vector<int> &nums)
   {
+    int currFarthest = 0, currEnd = 0, n = nums.size(), steps = 0;
+    // you want to reach the last step
+    for (int i = 0; i < n - 1; i++)
+    {
+      currFarthest = max(currFarthest, i + nums[i]);
+
+      if (i == currEnd)
+      {
+        steps++;
+        currEnd = currFarthest;
+      }
+    }
+    return steps;
+  }
+};
+
+class Solution
+{
+public:
+  int jump(vector<int> &nums)
+  {
     int n = nums.size();
     vector<int> dp(n, INT_MAX);
 

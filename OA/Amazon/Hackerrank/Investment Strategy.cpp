@@ -14,7 +14,7 @@ using namespace std;
 Your team at Amazon has been asked to help outline options for a hypothetical investment strategy.
 Imagine an investor opens a new account and wants to invest in a number of assets.
 Each asset begins with a balance of 0, an its value is stored in an array using 1-based indexing.
-Periodically, a contribution is received ci equal investments are made in a subset of the portfolio.
+Periodically, a contribution is received C_i equal investments are made in a subset of the portfolio.
 Each contribution will be given by investment amount, start index, end index.
 Eact-investment in that range will receive the contribution amount.
 Determine the maximum amount invested in any one investment after all contributions.
