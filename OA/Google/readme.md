@@ -1,4 +1,4 @@
 # NDA -_-
 
-- Similar to Text Justification (Nov 19, 2021)
-- Similar to longest AP sequence in a Binary Tree (Nov 3, 2021)
+- Similar to 68. Text Justification (Nov 19, 2021)
+- Similar to 549. Binary Tree Longest Consecutive Sequence II (Nov 3, 2021)
