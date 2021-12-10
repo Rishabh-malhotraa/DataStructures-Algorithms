@@ -1,3 +1,4 @@
+
 //  ____  _     _           _     _       __  __       _ _           _
 // |  _ \(_)___| |__   __ _| |__ | |__   |  \/  | __ _| | |__   ___ | |_ _ __ __ _
 // | |_) | / __| '_ \ / _` | '_ \| '_ \  | |\/| |/ _` | | '_ \ / _ \| __| '__/ _` |
@@ -9,50 +10,51 @@ using namespace std;
 
 class LRUCache
 {
-private:
-  int capacity;
-  unordered_map<int, int> keys;
-  unordered_map<int, list<int>::iterator> pos;
-  list<int> cache;
-
-  void use(int key)
-  {
-    // if you have the key already present then remove it
-    if (keys.find(key) != keys.end())
-    {
-      cache.erase(pos[key]);
-    }
-    else if (cache.size() >= capacity)
-    {
-      pos.erase(cache.back());
-      keys.erase(cache.back());
-      cache.pop_back();
-    }
-
-    cache.push_front(key);
-    pos[key] = cache.begin();
-  }
-
 public:
+  unordered_map<int, list<int>::iterator> pos;
+  unordered_map<int, int> cache;
+  list<int> stream;
+  int capacity;
   LRUCache(int capacity)
   {
     this->capacity = capacity;
   }
 
+  void update(int key)
+  {
+    if (pos.find(key) != pos.end())
+    {
+      stream.erase(pos[key]);
+    }
+    else if (stream.size() == capacity)
+    {
+      pos.erase(stream.back());
+      cache.erase(stream.back());
+      stream.pop_back();
+    }
+    stream.push_front(key);
+    pos[key] = stream.begin();
+  }
+
   int get(int key)
   {
-    int result = -1;
-    if (keys.find(key) != keys.end())
-    {
-      use(key);
-      result = keys[key];
-    }
-    return result;
+    if (cache.find(key) == cache.end())
+      return -1;
+
+    update(key);
+    return cache[key];
   }
 
   void put(int key, int value)
   {
-    use(key);
-    keys[key] = value;
+    cache[key] = value;
+    update(key);
   }
 };
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
