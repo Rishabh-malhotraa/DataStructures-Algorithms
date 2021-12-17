@@ -47,12 +47,7 @@
   },
   "input": {
     "prefix": "cpinp",
-    "body": [
-      "#ifndef ONLINE_JUDGE",
-      "\tfreopen(\"input.txt\", \"r\", stdin);",
-      "\tfreopen(\"output.txt\", \"w\", stdout);",
-      "#endif\n\t"
-    ],
+    "body": ["#ifndef ONLINE_JUDGE", "\tfreopen(\"input.txt\", \"r\", stdin);", "\tfreopen(\"output.txt\", \"w\", stdout);", "#endif\n\t"],
     "description": "Reading input from textfile "
   },
   "timer": {
@@ -106,21 +101,12 @@
   },
   "vector 3D": {
     "prefix": "cp3d",
-    "body": [
-      "vector<vector<vector<int>>> dp(n$1, vector<vector<int>>(n$2, vector<int>(n$3, 0)));"
-    ],
+    "body": ["vector<vector<vector<int>>> dp(n$1, vector<vector<int>>(n$2, vector<int>(n$3, 0)));"],
     "description": "3D Vector Initialization "
   },
   "2D loop": {
     "prefix": "cp2dfor",
-    "body": [
-      "for (int i = 0; i < n$1; i++)",
-      "{",
-      "    for (int j = 0; j < n$2; j++)",
-      "    {",
-      "    }",
-      "}"
-    ],
+    "body": ["for (int i = 0; i < n$1; i++)", "{", "    for (int j = 0; j < n$2; j++)", "    {", "    }", "}"],
     "description": "Loop 2-D"
   },
   "2D Gap loop": {
@@ -371,8 +357,8 @@
       "public:\r",
       "  DisjointSet(int N)\r",
       "  {\r",
-      "    parent.resize(N, -1);\r",
-      "    rank.resize(N, 1);\r",
+      "    parent.assign(N, -1);\r",
+      "    rank.assign(N, 1);\r",
       "  }\r",
       "\r",
       "  // Find the parent of the Disjoint Set\r",
@@ -442,23 +428,12 @@
   },
   "Boundry Conditions": {
     "prefix": "cpisValid",
-    "body": [
-      "int m, n;",
-      "bool isValid(int i, int j)\r",
-      "{\r",
-      "  return (i >= 0 && i < m && j >= 0 && j < n);\r",
-      "}"
-    ],
+    "body": ["int m, n;", "bool isValid(int i, int j)\r", "{\r", "  return (i >= 0 && i < m && j >= 0 && j < n);\r", "}"],
     "description": "Checking if co-ordinates are in the grid or not"
   },
   "Boundry Conditions Lamda": {
     "prefix": "cpisValidII",
-    "body": [
-      "auto isValid = [m, n](int x, int y)\r",
-      "{\r",
-      "  return (i >= 0 && i < m && j >= 0 && j < n);\r",
-      "}"
-    ],
+    "body": ["auto isValid = [m, n](int x, int y)\r", "{\r", "  return (i >= 0 && i < m && j >= 0 && j < n);\r", "}"],
     "description": "Checking if co-ordinates are in the grid or not"
   },
   "Sieve of Eratosthenes": {
@@ -467,10 +442,10 @@
       "set<int> getPrimes(int &n)\r",
       "{\r",
       "  set<int> primes;\r",
-      "  vector<bool> visited(n, true);\r",
+      "  vector<bool> visited(n + 1, true);\r",
       "  for (int i = 2; i <= n; i++)\r",
       "    if (visited[i] == true)\r",
-      "      for (int j = i * i; j < n; j += i)\r",
+      "      for (int j = i * i; j <= n; j += i)\r",
       "        visited[j] = false;\r",
       "\r",
       "  for (int idx = 2; idx <= n; idx++)\r",
@@ -505,9 +480,12 @@
       "  TrieNode *root;",
       "",
       "public:",
-      "  Trie()",
+      "  Trie(vector<string> words = {})",
       "  {",
       "    root = new TrieNode();",
+      "",
+      "    for (string word : words)",
+      "      this->insert(word);",
       "  }",
       "  void insert(string key)",
       "  {",
@@ -541,5 +519,78 @@
       "};"
     ],
     "description": "Implementation of Trie Data Structure"
+  },
+  "Grid Dimensions": {
+    "prefix": "cpsize",
+    "body": ["m = grid.size(), n = grid[0].size();"],
+    "description": "Length of Rows and Columns of a grid"
+  },
+  "Rabin Karp": {
+    "prefix": "cprabin",
+    "body": [
+      "class RabinKarp",
+      "{",
+      "private:",
+      "  const int MOD = 1e9 + 7;",
+      "  const int base = 229;",
+      "  vector<long long> baseHash, textHash;",
+      "  string text;",
+      "",
+      "  vector<long long> getHash(string s)",
+      "  {",
+      "    int n = s.size();",
+      "    vector<long long> hash(n + 1, 0);",
+      "",
+      "    for (int i = 0; i < n; i++)",
+      "    {",
+      "      int ch = s[i] - 'a' + 1;",
+      "      hash[i + 1] = (hash[i] + ch * baseHash[i]) % MOD;",
+      "    }",
+      "    return hash;",
+      "  }",
+      "",
+      "  bool checkStrings(string &pattern, string &text, int &idx)",
+      "  {",
+      "    for (int i = 0; i < pattern.size(); i++)",
+      "      if (pattern[i] != text[idx + i])",
+      "        return false;",
+      "    return true;",
+      "  }",
+      "",
+      "public:",
+      "  RabinKarp(string text)",
+      "  {",
+      "    this->text = text;",
+      "    int n = text.size();",
+      "    baseHash.assign(n + 1, 1);",
+      "    textHash.assign(n + 1, 0);",
+      "",
+      "    for (int i = 0; i < n; i++)",
+      "      baseHash[i + 1] = (baseHash[i] * base) % MOD;",
+      "",
+      "    textHash = getHash(text);",
+      "  }",
+      "",
+      "  // get the occurances of string position of pattern match",
+      "  vector<int> occurances(string pattern)",
+      "  {",
+      "    vector<int> indices;",
+      "",
+      "    long long patternHash = getHash(pattern).back();",
+      "    int n = text.size(), m = pattern.size();",
+      "",
+      "    for (int i = 0; i <= n - m; i++)",
+      "    {",
+      "      long long windowHash = (textHash[i + m] - textHash[i] + MOD) % MOD;",
+      "      long long patternHashOffset = (patternHash * baseHash[i]) % MOD;",
+      "",
+      "      if (windowHash == patternHashOffset && checkStrings(pattern, text, i))",
+      "        indices.push_back(i);",
+      "    }",
+      "    return indices;",
+      "  }",
+      "};"
+    ],
+    "description": "Rabin Karp Algorithm for pattern matching"
   }
 }
