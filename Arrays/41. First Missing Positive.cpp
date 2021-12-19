@@ -13,29 +13,19 @@ using namespace std;
 class Solution
 {
 public:
-  int longestValidParentheses(string brackets)
+  int firstMissingPositive(vector<int> &nums)
   {
-    stack<int> s;
-    int n = brackets.size();
-    int len = 0, maxLen = 0;
-    for (int i = 0; i < n; i++)
-    {
-      char ch = brackets[i];
-      if (ch == ')' && (s.empty() == false && brackets[s.top()] == '('))
-        s.pop();
-      else
-        s.push(i);
-    }
-    int curr = n, prev = 0;
-    while (s.empty() == false)
-    {
-      prev = s.top();
-      maxLen = max(maxLen, curr - prev - 1);
-      curr = prev;
-      s.pop();
-    }
-    maxLen = max(maxLen, curr);
+    int n = nums.size();
 
-    return maxLen;
+    // 3 4 -1 1
+    for (int i = 0; i < n; i++)
+      while (nums[i] > 0 && nums[i] <= n && nums[i] != nums[nums[i] - 1])
+        swap(nums[i], nums[nums[i] - 1]);
+
+        int i;
+    for (i = 0; i < n; i++)
+      if (nums[i] != i + 1)
+        return i + 1;
+    return i + 1;
   }
 };

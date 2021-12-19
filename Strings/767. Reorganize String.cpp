@@ -15,20 +15,32 @@ class Solution
 public:
   string reorganizeString(string s)
   {
-    unordered_map<char, int> freq;
-
+    int n = s.size();
+    unordered_map<char, int> mp;
+    vector<pair<int, char>> freq;
     for (char &ch : s)
-      freq[ch]++;
+      mp[ch]++;
 
-    string result = s;
+    for (auto [ch, count] : mp)
+      freq.push_back({count, ch});
+
+    sort(freq.begin(), freq.end(), greater<pair<int, char>>());
+
+    if (2 * freq.begin()->first - 1 > n)
+      return "";
+
+    string result = string(n, ' ');
     int idx = 0, nidx = 0;
-    int n = result.size();
-    for (auto [ch, count] : freq)
+    for (auto [count, ch] : freq)
     {
       while (count--)
       {
         result[idx] = ch;
-        idx = (idx + 2) % n;
+        // cout << result << endl;
+
+        idx = (idx + 2);
+        if (idx >= n)
+          idx = 1;
       }
     }
     return result;

@@ -25,7 +25,7 @@ private:
 
     for (int i = 0; i < n; i++)
     {
-      int ch = s[i] - 'a' + 1;
+      int ch = s[i] - 'A' + 1;
       hash[i + 1] = (hash[i] + ch * baseHash[i]) % MOD;
     }
     return hash;
