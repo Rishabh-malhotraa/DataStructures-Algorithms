@@ -8,6 +8,7 @@
 using namespace std;
 
 // Easy just map characters to letter and then search thorugh the entire search space
+
 class Solution
 {
 public:
@@ -25,12 +26,7 @@ public:
       string val = umap[ch];
 
       for (int i = 0; i < val.size(); i++)
-      {
-        string s(1, val[i]);
-        currStr.append(s);
-        backtrack(start + 1, digits, currStr);
-        currStr.pop_back();
-      }
+        backtrack(start + 1, digits, currStr + val[i]);
     }
   }
 
