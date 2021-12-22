@@ -18,6 +18,6 @@
 
 ## UPDATE 4: 20th December
 
-- I had my culture fit + technical round with an EM at Mercari. It went great; there were a host of non-technical and technical questions, it went great. I am satisfied with my performance, let's hope for the best! :3
+- I had my culture fit + technical round with an EM at Mercari. It went great; there were a host of [non-technical and technical questions](https://www.notion.so/rishabh-malhotra/Mercari-Interview-II-83167820cb35456f92354fb46e0cc048), it went great. I am satisfied with my performance, let's hope for the best! :3
 
 ---

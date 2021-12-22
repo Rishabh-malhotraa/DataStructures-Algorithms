@@ -33,7 +33,7 @@ public:
   {
     stack<int> s;
 
-    for (string token : tokens)
+    for (string &token : tokens)
     {
       if (isOperator(token))
       {

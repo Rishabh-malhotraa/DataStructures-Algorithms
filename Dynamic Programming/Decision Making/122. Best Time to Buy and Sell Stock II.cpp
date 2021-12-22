@@ -20,7 +20,7 @@ public:
     }
     return maxprofit;
   }
-}
+};
 
 /*
 
@@ -49,6 +49,6 @@ public:
     }
     return result;
   }
-}; 
+};
 
 */
