@@ -88,7 +88,7 @@ public:
     }
     node->isTerminal = true;
   }
-  TreiNode *getRootPointer()
+  TrieNode *getRootPointer()
   {
     return root;
   }
@@ -116,16 +116,19 @@ unordered_map<string, int> find_frequeuncy(vector<string> &file_names, vector<st
 
     // if current word in text does not match skip
     if (node->children.find(words[i]) == node->children.end())
-      i++, continue;
-
-    string currWord = "";
-    while (node->children.find(words[i]) != node->children.end())
-    {
-      currWord += words[i];
-      node = node->children[words[i]];
       i++;
+    else
+    {
+      string currWord = "";
+      while (node->children.find(words[i]) != node->children.end())
+      {
+        currWord += words[i];
+        node = node->children[words[i]];
+        i++;
+      }
+      if (node->isTerminal)
+        freq[currWord] += 1;
     }
-    freq[currWord] += 1;
   }
   return freq;
 }

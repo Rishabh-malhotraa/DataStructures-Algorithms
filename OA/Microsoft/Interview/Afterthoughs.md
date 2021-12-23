@@ -19,15 +19,21 @@ Interview with Microsoft.
 
 - I got the call for the following interview 30 minutes after my second from my recruiter.
 - This was my best interview of the lot. All my interviews got progressively better, lol.
-- My interview gave me a very abstract problem statement, but within 30 seconds, I was able to make out that the question is  isomorphic to the famous rotten oranges question and could be solved with BFS
+- My interviewer gave me a very abstract problem statement, but within 30 seconds, I was able to make out that the question is isomorphic to the famous rotten oranges question and could be solved with BFS
 - I am super good at writing high-quality BFS code.
 - My code quality stood out to my interviewer.
 - The next question was about merging sets, and it was more of a discussion. That went well, too, few hiccups, but that happens; how you deal with those hiccups is what's more important.
 - The interview ended on an excellent note.
 
 
-**Obviously, you can never be certain about the outcome, but the interview well really well. If someone yesterday would tell me that this is how your interview would go, I'll take this outcome any day of the week, now its all left to fate, if it's meant to be it will happen.**
+**Obviously, you can never be certain about the outcome, but the interviews well really well. If someone yesterday would tell me that this is how your interview would go, I'll take this outcome any day of the week, now its all left to fate, if it's meant to be it will happen.**
 
 **Hoping for the best 🤞😀**
+
+---
+
+## Update (23rd December, 2021)
+
+I got in :3 YAY!
 
 ---

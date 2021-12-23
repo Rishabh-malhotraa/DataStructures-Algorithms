@@ -61,7 +61,7 @@ public:
  * @param { map<Node, list<Node>> } - Adjacency list graph of all the neighbours of a given fruit
  * @param {Node} rottenFruit - The rotten fruit node.
  */
-int rottenFruits(map<Node, list<Node>> graph, Node rottenFruit)
+int minimumHours(map<Node, list<Node>> graph, Node rottenFruit)
 {
 
   queue<Node> q;
