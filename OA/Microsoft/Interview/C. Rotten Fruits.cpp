@@ -83,7 +83,7 @@ int minimumHours(map<Node, list<Node>> graph, Node rottenFruit)
       Node currNode = q.front();
       q.pop();
 
-      for (Node neighbour : graph[currNode])
+      for (Node &neighbour : graph[currNode])
         if (visited[neighbour] == false)
         {
           visited[neighbour] = true;
