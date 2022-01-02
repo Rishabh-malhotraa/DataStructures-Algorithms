@@ -26,12 +26,38 @@ public:
   }
 };
 
+class Solution
+{
+public:
+  int lengthOfLIS(vector<int> &nums)
+  {
+    int n = nums.size();
+    vector<int> sequence;
+    sequence.push_back(nums[0]);
+    for (int i = 1; i < n; i++)
+    {
+      // for(int el : sequence)
+      //   cout << el << " ";
+      // cout << endl;
+      if (sequence.back() < nums[i])
+        sequence.push_back(nums[i]);
+      else
+      {
+        int idx = lower_bound(sequence.begin(), sequence.end(), nums[i]) - sequence.begin();
+        // cout << nums[i] << " " << idx << " " << i << endl;
+        sequence[idx] = nums[i];
+      }
+    }
+    return sequence.size();
+  }
+};
+
 /* NlogN complexity
 class Solution {
 public:
     int lengthOfLIS(vector<int>& A) {
         int len = 0;
-        for(auto cur : A) 
+        for(auto cur : A)
             if(len == 0 || A[len-1] < cur) A[len++] = cur;             // extend
             else *lower_bound(begin(A), begin(A) + len, cur) = cur;    // replace
         return len;
