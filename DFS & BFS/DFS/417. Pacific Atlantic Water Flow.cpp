@@ -14,7 +14,7 @@ class Solution
 {
 private:
   int m, n;
-  vector<vector<int>> dir = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
+  vector<pair<int, int>> dir = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
   bool isValid(int i, int j)
   {
@@ -25,9 +25,9 @@ private:
   {
     visited[i][j] = true;
 
-    for (vector<int> &d : dir)
+    for (auto &[di, dj] : dir)
     {
-      int x = i + d[0], y = j + d[1];
+      int x = i + di, y = j + dj;
 
       if (isValid(x, y) && visited[x][y] == false && heights[x][y] >= heights[i][j])
         dfs(x, y, heights, visited);

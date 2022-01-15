@@ -176,31 +176,60 @@ public:
   }
 };
 
-string replaceWord(string &text, unordered_map<string, string> &cache)
+// How i would strucute it after giving some thought to it
+
+class ReplaceWords
 {
-  int n = text.size();
-  string newText = "";
-  int i = 0;
-  while (i < n)
+private:
+  unordered_map<string, string> cache;
+  vector<string> sortedDependecies;
+  bool computed, acyclic;
+
+  void resolveDependecies()
   {
-    if (text[i] == '%')
-    {
-      string key = "";
-      // %CITY%
-      //    |
-      // CIT
-      while (text[++i] != '%')
-      {
-        key.push_back(text[i]);
-      }
-      newText += cache[key]; // O(1) IN CASE OF COLLISION O(N)
-      i++;                   //
-    }
-    else
-    {
-      newText += text[i];
-      i++;
-    }
+    // resolve dependencies using sortedDependecies vector which is topologically sorted
   }
-  return newText;
-}
+
+  unordered_map<string, list<string>> buildGraph()
+  {
+  }
+
+  bool isAcyclic()
+  {
+    if (computed) // cached value
+      return acyclic;
+
+    // check if graph is DAG using Kahns Algorithm (indegrees)
+    unordered_map<string, list<string>> graph = buildGraph();
+  }
+
+public:
+  ReplaceWords(unordered_map<string, string> &cache)
+  {
+    this->cache = cache;
+    computed = acyclic = false;
+  }
+
+  void newCache(unordered_map<string, string> cache)
+  {
+    this->cache = cache;
+    computed = acyclic = false;
+    init();
+  }
+
+  void init()
+  {
+    if (isAcyclic() == true)
+      resolveDependecies();
+    else
+      throw invalid_argument("cyclic dependecies");
+  }
+
+  string replaceText(string &text)
+  {
+    if (isAcyclic() == false)
+      return "";
+
+    // we substitute the text using our precomputed cache
+  }
+};

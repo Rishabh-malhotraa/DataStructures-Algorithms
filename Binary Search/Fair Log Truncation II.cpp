@@ -127,8 +127,10 @@ bool isPossible(unordered_map<string, deque<LogMessage>> &freqList, int threshol
   return currSize <= maxSize;
 }
 
-LogMessages TruncateLogMessages(LogMessages messages, int maxSize)
+LogMessages TruncateLogMessages(LogMessages messages, size_t maxSize)
 {
+  const unordered_map<string, long long>::iterator it;
+
   int l = 0, r = maxSize;
 
   unordered_map<string, deque<LogMessage>> freqList;

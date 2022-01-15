@@ -50,7 +50,7 @@ max => [1, 3, 5]
 
 for a given subarray in A -> diff(MaxEL - minEl <= k )
 
-N(N-1)/2
+N(N+1)/2
 
 Method 1: Enumeration
 enumerate all the possible subarray ->
@@ -88,10 +88,10 @@ min -> 1,3 5
 
 
 [1,2,3,4]
- [1] [2] [3] [4]     4
- [1,2]  [2,3] [3,4]  3
- [1,2,3] [2,3,4]     2
- [1,2,3,4]           1
+[1] [2] [3] [4]     4
+[1,2] [2,3] [3,4]   3
+[1,2,3] [2,3,4]     2
+[1,2,3,4]           1
 
    sum of n natural number -> N(N+1)/2
 
@@ -128,12 +128,12 @@ int countValidSubarrays(vector<int> &nums, int k)
 
   while (r < n)
   {
-    int minEL = *pq.begin();
+    int minEl = *pq.begin();
     int maxEl = *pq.rbegin();
 
     if (maxEl - minEl > k)
     {
-      count = r - l - 1;
+      count += r - l - 1;
       pq.erase(pq.find(nums[l++])); // O(log(N) + log(N))
     }
     else
@@ -143,6 +143,8 @@ int countValidSubarrays(vector<int> &nums, int k)
   }
 
   // have some extra addition here
+  int windowSize = r - l;
+  count += windowSize * (windowSize + 1) / 2;
 
   return count;
 }

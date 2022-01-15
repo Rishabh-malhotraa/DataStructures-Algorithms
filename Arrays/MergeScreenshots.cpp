@@ -168,10 +168,10 @@ AAA BBB
 
 
 
-    AAA BBB CCC
-DDD   0  0   0
-BBB   0  1   0
-CCC   0  0   2
+    AAA BBB CCC DDD BBB CCC
+DDD   0  0   0    1   0   0
+BBB   0  1   0    0   2   0
+CCC   0  0   2    0   0   3
 */
 
 vector<string> mergedScreenshots(vector<string> &screenshot1, vector<string> &screenshot2)
@@ -225,7 +225,6 @@ vector<string> mergedScreenshots(vector<string> &screenshot1, vector<string> &sc
 
   // preComputeHash(screenshot1, screenshot1, hashS1, hashS2);
 
-  vector<string> candidate;
   int maxLen = 0;
   for (int j = 0; j < n; j++)
   {
