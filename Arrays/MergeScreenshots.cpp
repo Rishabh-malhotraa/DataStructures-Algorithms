@@ -18,6 +18,28 @@ O(m+n)
 use rolling has -> Rabin karp
 precompute the hash value
 
+      <---
+ABC   BCD
+
+
+  C
+ B
+A
+
+              BCD
+A - B-C   =>  B-C-D
+
+
+C -> BC  -> ABC
+
+
+B -> BC
+
+Longest common suffix and prefix
+
+     A
+    B
+   C
 
 
 ss1
@@ -223,7 +245,7 @@ vector<string> mergedScreenshots(vector<string> &screenshot1, vector<string> &sc
   vector<int> hashS1(n, 0), hashS2(n, 0);
   vector<vector<int>> dp(n, vector<int>(n, 0));
 
-  // preComputeHash(screenshot1, screenshot1, hashS1, hashS2);
+  // preComputeHash(screenshot1, screenshot2, hashS1, hashS2);
 
   int maxLen = 0;
   for (int j = 0; j < n; j++)
@@ -238,4 +260,94 @@ vector<string> mergedScreenshots(vector<string> &screenshot1, vector<string> &sc
     screenshotMerged.push_back(screenshot2[i]);
 
   return screenshotMerged;
+}
+
+/**************************************
+ *  WORKING CODE
+ * **********************************/
+
+/*
+ ____  _     _           _     _       __  __       _ _           _
+|  _ \(_)___| |__   __ _| |__ | |__   |  \/  | __ _| | |__   ___ | |_ _ __ __ _
+| |_) | / __| '_ \ / _` | '_ \| '_ \  | |\/| |/ _` | | '_ \ / _ \| __| '__/ _` |
+|  _ <| \__ \ | | | (_| | |_) | | | | | |  | | (_| | | | | | (_) | |_| | | (_| |
+|_| \_\_|___/_| |_|\__,_|_.__/|_| |_| |_|  |_|\__,_|_|_| |_|\___/ \__|_|  \__,_|
+
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int dfs(vector<vector<int>> &dp, vector<string> &s1, vector<string> &s2, int i, int j, int len)
+{
+  if (j < 0)
+    return len;
+
+  if (i < 0)
+    return 0;
+
+  if (dp[i][j] != 0)
+    return dp[i][j];
+
+  // hashS1[i] == hashS2[j] &&  checkstring(s1[i], s2[j])
+  if (s1[i] == s2[j]) // help here
+    return dp[i][j] = dfs(dp, s1, s2, i - 1, j - 1, len + 1);
+
+  return 0;
+}
+
+vector<string> mergedScreenshots(vector<string> &screenshot1, vector<string> &screenshot2)
+{
+  int n = screenshot1.size();
+  vector<int> hashS1(n, 0), hashS2(n, 0);
+  vector<vector<int>> dp(n, vector<int>(n, 0));
+
+  // preComputeHash(screenshot1, screenshot2, hashS1, hashS2);
+
+  int maxLen = 0;
+  for (int j = 0; j < n; j++)
+    maxLen = max(maxLen, dfs(dp, screenshot1, screenshot2, n - 1, j, 0));
+
+  vector<string> screenshotMerged = screenshot1;
+  cout << maxLen << endl;
+  screenshotMerged.insert(screenshotMerged.end(), screenshot2.begin() + maxLen, screenshot2.end());
+
+  return screenshotMerged;
+}
+
+void solve()
+{
+  int n;
+  cin >> n;
+  vector<string> arr(n), brr(n);
+  for (int i = 0; i < n; i++)
+    cin >> arr[i];
+
+  for (int i = 0; i < n; i++)
+    cin >> brr[i];
+
+  auto result = mergedScreenshots(arr, brr);
+
+  for (string el : result)
+    cout << el << endl;
+
+  return;
+}
+
+int main()
+{
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
+
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    solve();
+  }
+  return 0;
 }

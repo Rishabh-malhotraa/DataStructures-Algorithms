@@ -123,22 +123,22 @@ int countValidSubarrays(vector<int> &nums, int k)
 
   int l = 0, r = 1, n = nums.size();
 
-  multiset<int> pq;
-  pq.insert(nums[0]);
+  multiset<int> sortedList;
+  sortedList.insert(nums[0]);
 
   while (r < n)
   {
-    int minEl = *pq.begin();
-    int maxEl = *pq.rbegin();
+    int minEl = *sortedList.begin();
+    int maxEl = *sortedList.rbegin();
 
     if (maxEl - minEl > k)
     {
       count += r - l - 1;
-      pq.erase(pq.find(nums[l++])); // O(log(N) + log(N))
+      sortedList.erase(sortedList.find(nums[l++])); // O(log(N) + log(N))
     }
     else
     {
-      pq.insert(nums[r++]);
+      sortedList.insert(nums[r++]);
     }
   }
 
