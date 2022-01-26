@@ -1,4 +1,4 @@
-# 25th Jan, 2022 (4/4 AC)
+# 26th Jan, 2022 (4/4 AC)
 
 - Happy Republic Day `^^`
 - All and all the questions were relevant and of really good quality.
