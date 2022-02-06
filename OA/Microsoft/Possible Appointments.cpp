@@ -7,6 +7,8 @@
 
 */
 
+// https://codeforces.com/blog/entry/91743
+
 #include <bits/stdc++.h>
 using namespace std;
 

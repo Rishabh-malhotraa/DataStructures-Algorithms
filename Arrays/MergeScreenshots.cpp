@@ -200,21 +200,23 @@ vector<string> mergedScreenshots(vector<string> &screenshot1, vector<string> &sc
 {
   int n = screenshot1.size();
   vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
-  reverse(screenshot2.begin(), screenshot2.end());
 
-  int maxLen = 0, result = 0;
+  int maxLen = 0;
 
   for (int i = 1; i <= n; i++)
   {
     for (int j = 1; j <= n; j++)
     {
       // use Rabin Karp to hash the strings for quicker checking
-      if (screenshot1[i] == screenshot2[j])
-        dp[i][j] = 1 + dp[i - 1][j - 1];
+      if (screenshot1[i - 1] == screenshot2[j - 1])
+        dp[i][j] = (dp[i - 1][j - 1] != -1) ? 1 + dp[i - 1][j - 1] : -1;
+      else
+        dp[i][j] = -1;
       if (i == n)
-        result = max(result, dp[i][j]);
+        maxLen = max(maxLen, dp[i][j]);
     }
   }
+
   vector<string> mergedScreenshot(screenshot1.begin(), screenshot1.begin() + n - maxLen);
   mergedScreenshot.insert(mergedScreenshot.end(), screenshot2.begin(), screenshot2.end());
 

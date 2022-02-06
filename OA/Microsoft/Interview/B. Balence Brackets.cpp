@@ -106,7 +106,7 @@ int minimumOperation(string &brackets)
   }
 
   operations += (open_brackets / 2);
-  return operations
+  return operations;
 }
 
 int main()
