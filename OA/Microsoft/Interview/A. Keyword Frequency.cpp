@@ -76,7 +76,7 @@ public:
       this->insert(tokenizeWords(word));
   }
 
-  void insert(vector<string> &words)
+  void insert(vector<string> words)
   {
     TrieNode *node = root;
     for (string word : words)
@@ -94,10 +94,10 @@ public:
   }
 };
 
-unordered_map<string, int> find_frequeuncy(vector<string> &file_names, vector<string> &keywords)
+unordered_map<string, int> find_frequeuncy(vector<string> &filenames, vector<string> &keywords)
 {
   vector<string> words;
-  for (string filename : file_names)
+  for (string filename : filenames)
   {
     vector<string> words_ = tokenizeWords(filename);
     words.insert(words.end(), words_.begin(), words_.end());
@@ -119,15 +119,26 @@ unordered_map<string, int> find_frequeuncy(vector<string> &file_names, vector<st
       i++;
     else
     {
-      string currWord = "";
+      string currWord = "", longestKeywordMatchedSofar = "";
+      int lastMatchedidx = i;
       while (node->children.find(words[i]) != node->children.end())
       {
         currWord += words[i];
+
+        // text     = Hi I am a student
+        // keywords = {"Hi I", "Hi I am a engineer"}
+
+        if (node->isTerminal == true)
+        {
+          longestKeywordMatchedSofar = currWord;
+          lastMatchedidx = i;
+        }
         node = node->children[words[i]];
         i++;
       }
-      if (node->isTerminal)
-        freq[currWord] += 1;
+
+      freq[longestKeywordMatchedSofar] += 1;
+      i = lastMatchedidx++;
     }
   }
   return freq;
