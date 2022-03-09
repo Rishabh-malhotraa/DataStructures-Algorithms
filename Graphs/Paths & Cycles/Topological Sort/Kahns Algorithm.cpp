@@ -38,7 +38,7 @@ public:
       if (indegree[i] == 0)
         q.push(i);
 
-    while (q.empty())
+    while (!q.empty())
     {
       int node = q.front();
       q.pop();
