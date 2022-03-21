@@ -102,7 +102,7 @@ public:
     int n = nums.size();
 
     sort(nums.begin(), nums.end()); // this is O(nlog(N))
-    int maxLength = 1;
+    int maxLength = 0;
 
     // we can put all the number in unorderd map first
     //
@@ -192,3 +192,15 @@ counr = 4  el = 5
     return maxLength;
   }
 };
+
+//   [1,1,1,1,0],
+//   [1,1,0,1,0],
+//   [1,1,0,0,0],
+//   [0,0,0,0,0]
+
+//   Input: grid = [
+//   [1,1,0,0,0],
+//   [1,1,0,0,0],
+//   [0,0,1,0,0],
+//   [0,0,0,1,1]
+// ]
