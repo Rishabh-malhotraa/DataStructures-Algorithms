@@ -36,7 +36,7 @@ bool canJump(vector<int> &jumps)
   vector<bool> visited(n, false);
 
   queue<int> q({0});
-  visited[i] = true;
+  visited[0] = true;
 
   while (q.empty() == false)
   {
@@ -50,7 +50,7 @@ bool canJump(vector<int> &jumps)
 
       if (visited[curr_idx + i] == false)
       {
-        q.insert(i);
+        q.push(i);
         visited[i] = true;
       }
     }
@@ -63,8 +63,7 @@ void backtrack(vector<vector<int>> &combinations, unordered_set<int> &usedNumber
 {
   if (k == 0 && n == 0) //
   {
-    vector<int> arr(usedNumbers.begin(), usedNumber.end())
-        combinations.push_back(arr);
+    combinations.push_back(vector<int>(usedNumbers.begin(), usedNumbers.end()));
     return;
   }
   if ((k == 0 && n != 0) || n < 0)
@@ -80,7 +79,7 @@ void backtrack(vector<vector<int>> &combinations, unordered_set<int> &usedNumber
 
       backtrack(combinations, usedNumbers, k - 1, n - num); //
 
-      userdNumber.erase(num); // we are removing the number we chose
+      usedNumbers.erase(num); // we are removing the number we chose
     }
     return;
   }
@@ -92,9 +91,9 @@ vector<vector<int>> getCombinations(int k, int n)
 
   unordered_set<int> usedNumbers; // {9}
 
-  backtack(result, usedNumbers, k, n); // recursively looking through our search space
+  backtrack(combinations, usedNumbers, k, n); // recursively looking through our search space
 
-  return combinations
+  return combinations;
 }
 
 /*
