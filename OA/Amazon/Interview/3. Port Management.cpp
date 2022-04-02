@@ -40,20 +40,22 @@ private:
 public:
   int getPort()
   {
+    int port;
     if (availablePorts.empty() == true && nextPort == INT_MAX)
       throw "Out of Bounds";
 
     if (availablePorts.empty() == true)
     {
       allocatedPorts.insert(nextPort);
-      return nextPort++;
+      port = nextPort++;
     }
     else
     {
-      int port = availablePorts.top();
+      port = availablePorts.top();
       availablePorts.pop();
       allocatedPorts.insert(port);
     }
+    return port;
   }
   void returnPort(int port)
   {
@@ -61,7 +63,7 @@ public:
       throw invalid_argument("PORT should not be less that 0");
 
     if (allocatedPorts.find(port) == allocatedPorts.end())
-      throw "PORT cannot be free -- it is yet allocated.";
+      throw "PORT has not been allocation, we cannot free an unallocated port.";
 
     allocatedPorts.erase(allocatedPorts.find(port));
     availablePorts.push(port);
