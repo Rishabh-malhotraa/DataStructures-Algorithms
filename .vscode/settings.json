@@ -3,5 +3,9 @@
   "editor.tabSize": 2,
   "editor.useTabStops": true,
   "C_Cpp.intelliSenseEngineFallback": "Disabled",
-  "C_Cpp.default.compilerPath": "C:\\Program Files\\mingw64\\bin"
+  "C_Cpp.default.compilerPath": "C:\\Program Files\\mingw64\\bin",
+  "files.associations": {
+    "cmath": "cpp",
+    "complex": "cpp"
+  }
 }
