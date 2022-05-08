@@ -10,6 +10,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+
+Method 1 : Merge Arrays
+TC : O(N + M) SC : O(N + M)
+ - Merge Two Arrays and then find the median
+ - Median if n is odd -> arr[N/2]
+ - Median if n is even -> (arr[N/2] + arr[N/2 - 1])/ 2
+
+
+Method 2: Use 2 Basket Method
+TC : O(N + M) SC : O(1)
+
+- Make 2 Bags of size
+   - If n is odd  : (N/2 + 1) and N/2
+   - If n is even :  N/2      and N/2
+
+a1 = [1 3 5]
+a2 = [4 9]
+
+1     3 5
+4 9
+
+1 3   5
+4     9
+
+1 3 5  {}
+{}     4 9
+
+
+L1  L2
+L3  L4
+
+When creating a Bag we want all elemetns in Bag 1 to be smaller than Bag 2
+- We know every element in L2 is >= L1 & every element in L4 >= L3
+- so we need to just check if
+    - L4(first Element) >= L1(last element)
+    - L2(first Element) >= L3(last element)
+
+
+Once we have Bags  sorted
+
+If n = odd    max(L1, L3)
+If n = even   max(L1, L3) + min(L2, L4) / 2
+
+*/
+
 class Solution
 {
 public:
