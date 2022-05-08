@@ -18,7 +18,11 @@ S = 'ABCBD'
 When i = 2, curr[2] = Uniq('ABC') + Uniq('BC') + Uniq('C')
 When i = 3, curr[3] = Uniq('ABCB') + Uniq('BCB') + Uniq('CB') + Uniq('B')
 
-Notice, we append char 'B' into each previous substrings. Only in substrings 'CB' and 'B', the char 'B' can be identified as uniq. The contribution of 'B' from curr[2] to curr[3] is i - showLastPosition['B']. At the same time, in substrings 'ABCB', 'BCB', the char 'B' can‘t’ be identified as uniq any more, the previous contribution of 'B' should be removed.
+Notice, we append char 'B' into each previous substrings. Only in substrings
+'CB' and 'B', the char 'B' can be identified as uniq. The contribution of 'B'
+from curr[2] to curr[3] is i - showLastPosition['B']. At the same time, in
+substrings 'ABCB', 'BCB', the char 'B' can‘t’ be identified as uniq any more,
+the previous contribution of 'B' should be removed.
 
 So we have'curr[i] = curr[i - 1] - contribution[S.charAt(i)] + (i - showLastPosition[S.charAt(i)])
 Then the new contribution[S.charAt(i)] = i - showLastPosition[S.charAt(i)]
