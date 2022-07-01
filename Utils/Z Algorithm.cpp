@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <bits/stdc++.h>
-using namespace std;
-
 // longest Proper Prefix
 // all prefix for string s[0..n-1)
 
