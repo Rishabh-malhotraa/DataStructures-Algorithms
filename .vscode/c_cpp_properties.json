@@ -1,15 +1,21 @@
 {
-  "configurations": [
-    {
-      "name": "GCC",
-      "includePath": ["${workspaceFolder}/**", "C:\\Program Files\\mingw64\\include"],
-      "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
-      "windowsSdkVersion": "10.0.18362.0",
-      "cStandard": "c17",
-      "intelliSenseMode": "gcc-x64",
-      "cppStandard": "c++17",
-      "compilerPath": "C:\\Program Files\\mingw64\\bin\\g++.exe"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "GCC",
+            "includePath": [
+                "/opt/homebrew/Cellar/gcc/13.2.0/include/c++/13/aarch64-apple-darwin22"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.18362.0",
+            "cStandard": "c17",
+            "intelliSenseMode": "gcc-x64",
+            "cppStandard": "c++17",
+            "compilerPath": "/opt/homebrew/bin/g++-14"
+        }
+    ],
+    "version": 4
 }

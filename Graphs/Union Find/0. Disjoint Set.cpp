@@ -109,3 +109,31 @@ public:
     return *max_element(rank.begin(), rank.end());
   }
 };
+
+class DisjointSetSimple
+{
+private:
+  vector<int> parent;
+  DisjointSetSimple(int n)
+  {
+    parent.assign(n, -1);
+  }
+
+  int find(int node)
+  {
+    if (parent[node] == -1)
+      return node;
+    return parent[node] = find(parent[node]);
+  }
+
+  void Union(int u, int v)
+  {
+    u = find(u), v = find(v);
+
+    if (u == v)
+      return;
+    else
+      // we can use rank compression here to make it more efficient
+      parent[u] = v;
+  }
+};

@@ -87,7 +87,7 @@ Order dfs(TreeNode *root, int &result)
 
   result = max(result, increasing + decreasing - 1);
 
-  return {decreasing, increasing};
+  return {increasing, decreasing};
 
   /*
 

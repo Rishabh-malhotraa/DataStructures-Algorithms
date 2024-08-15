@@ -65,3 +65,7 @@ public:
     return *max_element(rank.begin(), rank.end());
   }
 };
+
+int main(){
+  DisjointSet dsu = new DisjointSet(10);
+}
