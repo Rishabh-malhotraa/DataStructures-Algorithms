@@ -60,18 +60,42 @@ using namespace std;
 
 std::string Guess(const std::string &word);
 
+class Timer
+{
+public:
+  std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+  std::chrono::duration<float> duration;
+  Timer()
+  {
+    start = std::chrono::high_resolution_clock::now();
+  }
+  ~Timer()
+  {
+    end = std::chrono::high_resolution_clock::now();
+    duration = end - start;
+    float ms = duration.count() * 1000.0f;
+    cout << " Code executed in " << ms << "ms " << endl;
+  }
+
+  float getTimeFromStart(std::chrono::time_point<std::chrono::high_resolution_clock> now)
+  {
+    std::chrono::duration<float> duration = now - start;
+    return duration.count() * 1000.0f;
+  }
+};
+
 int cost(vector<string> &words, int money)
 {
   int COST_OF_GUESS = 1000;
+  int COST_PER_MILLI_SECOND = 10;
+  Timer time;
   // { apple, tales, times, steer, tires, banan}
 
   priority_queue<pair<int, string>, vector<pair<int, string>>, greater<pair<int, string>>> options;
   unordered_map<char, int> freq = getFrequencyMap(words);
 
   for (string word : words)
-  {
     options.push({getValue(word, freq), word});
-  }
 
   string guessWord = "_____";
 
@@ -82,6 +106,7 @@ int cost(vector<string> &words, int money)
     // a___b  besta
     bool check = checkIfBestPickIsValid(bestPick, guessWord);
 
+    money -= time.getTimeFromStart(chrono::high_resolution_clock::now()) * COST_PER_MILLI_SECOND;
     if (check)
     {
       guessWord = Guess(bestPick);

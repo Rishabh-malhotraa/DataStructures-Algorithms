@@ -10,39 +10,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int getLastHolding(vector<pair<string, int>> &dateAmount, string date)
+void solve()
 {
-  // this can be done in log(N) time using binary search
-  for (int i = 0; i < dateAmount.size(); i++)
-  {
-    auto &[currDate, amount] = dateAmount[i];
-    if (date == currDate)
-      return i == 0 ? 0 : dateAmount[i - 1].second;
-  }
-  return 0;
+  int n;
+  cin >> n;
+  vector<int> arr(n);
+  for (int i = 0; i < n; i++)
+    cin >> arr[i];
+
+  return;
 }
 
-vector<pair<string, int>> getAmount(vector<vector<pair<string, int>>> &input)
+int main()
 {
-  vector<pair<string, tuple<int, int>>> flattenInput;
-  vector<pair<string, int>> result;
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
 
-  for (int i = 0; i < input.size(); i++)
-    for (int j = 0; j < input[i].size(); j++)
-      flattenInput.push_back({input[i][j].first, {i, input[i][j].second}});
-
-  int total = 0;
-  string date;
-  for (int i = 0; i < flattenInput.size(); i++)
+  int t;
+  cin >> t;
+  while (t--)
   {
-    date = flattenInput[i].first;
-    if (i != 0 && date != flattenInput[i - 1].first)
-      result.push_back({flattenInput[i - 1].first, total});
-
-    auto &[company, stocks] = flattenInput[i].second;
-    total += stocks - getLastHolding(input[company], date);
+    solve();
   }
-  result.push_back({date, total});
-
-  return result;
+  return 0;
 }
