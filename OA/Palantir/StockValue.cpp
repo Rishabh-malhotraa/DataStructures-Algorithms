@@ -79,8 +79,8 @@ vector<pair<string, int>> getAmount(vector<vector<pair<string, int>>> &input)
 
     auto &[company, stocks] = flattenInput[i].second;
     total += stocks - getLastHolding(input[company], date);
+    result.push_back({date, total});
   }
-  result.push_back({date, total});
 
   return result;
 }

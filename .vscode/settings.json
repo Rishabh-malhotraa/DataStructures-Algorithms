@@ -1,12 +1,13 @@
 {
   "C_Cpp.errorSquiggles": "enabled",
+  // "C_Cpp.clang_format_style": "{ BasedOnStyle :  }",
   "editor.tabSize": 2,
   "editor.useTabStops": true,
   "C_Cpp.intelliSenseEngineFallback": "Disabled",
-  "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+  "C_Cpp.default.compilerPath": "/usr/bin/clang",
   "files.associations": {
-    "*.ejs": "html",
     ".ssh-nirvana.rc": "shellscript",
+    "*.ejs": "html",
     "cmath": "cpp",
     "complex": "cpp",
     "__bit_reference": "cpp",
@@ -117,6 +118,10 @@
     "syncstream": "cpp",
     "format": "cpp",
     "stdfloat": "cpp",
-    "__memory": "cpp"
+    "__memory": "cpp",
+    "__verbose_abort": "cpp",
+    "execution": "cpp",
+    "print": "cpp",
+    "text_encoding": "cpp"
   }
 }
