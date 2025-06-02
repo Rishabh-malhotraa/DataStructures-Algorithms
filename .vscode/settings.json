@@ -122,6 +122,8 @@
     "__verbose_abort": "cpp",
     "execution": "cpp",
     "print": "cpp",
-    "text_encoding": "cpp"
+    "text_encoding": "cpp",
+    "generator": "cpp",
+    "version": "cpp"
   }
 }

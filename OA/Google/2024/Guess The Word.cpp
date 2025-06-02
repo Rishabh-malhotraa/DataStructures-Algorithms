@@ -99,7 +99,7 @@ int cost(vector<string> &words, int money)
 
   string guessWord = "_____";
 
-  while (!(guessWord.find('_') == string::npos) || money == 0)
+  while (!(guessWord.find('_') == string::npos) || money <= 0)
   {
     string bestPick = options.top().second;
     options.pop();

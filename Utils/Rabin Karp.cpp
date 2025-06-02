@@ -15,23 +15,22 @@ class RabinKarp
 private:
   const int MOD = 1e9 + 7;
   const int base = 229;
-  vector<long long> baseHash, textHash;
+  vector<long long> power;
   string text;
 
-  vector<long long> getHash(string s)
+  long long getHash(string s)
   {
     int n = s.size();
-    vector<long long> hash(n + 1, 0);
-
+    long long hash = 0;
     for (int i = 0; i < n; i++)
     {
-      int ch = s[i] - 'A' + 1;
-      hash[i + 1] = (hash[i] + ch * baseHash[i]) % MOD;
+      int charValue = s[i] - 'A' + 1;
+      hash = (hash * base + charValue) % MOD;
     }
     return hash;
   }
 
-  bool checkStrings(string &pattern, string &text, int &idx)
+  bool checkStrings(string& pattern, string& text, int idx)
   {
     for (int i = 0; i < pattern.size(); i++)
       if (pattern[i] != text[idx + i])
@@ -44,13 +43,11 @@ public:
   {
     this->text = text;
     int n = text.size();
-    baseHash.assign(n + 1, 1);
-    textHash.assign(n + 1, 0);
+    power.assign(n + 1, 1);
 
     for (int i = 0; i < n; i++)
-      baseHash[i + 1] = (baseHash[i] * base) % MOD;
+      power[i + 1] = (power[i] * base) % MOD;
 
-    textHash = getHash(text);
   }
 
   // get the occurances of string position of pattern match
@@ -58,15 +55,26 @@ public:
   {
     vector<int> indices;
 
-    long long patternHash = getHash(pattern).back();
+    long long patternHash = getHash(pattern);
     int n = text.size(), m = pattern.size();
 
-    for (int i = 0; i <= n - m; i++)
-    {
-      long long windowHash = (textHash[i + m] - textHash[i] + MOD) % MOD;
-      long long patternHashOffset = (patternHash * baseHash[i]) % MOD;
 
-      if (windowHash == patternHashOffset && checkStrings(pattern, text, i))
+    long long windowHash = getHash(text.substr(0, m));
+
+
+    if (windowHash == patternHash && checkStrings(pattern, text, 0))
+      indices.push_back(0);
+
+
+    for (int i = 1; i <= n - m; i++)
+    {
+      int charOut = tolower(text[i - 1]) - 'a' + 1;
+      int charIn = tolower(text[i + m - 1]) - 'a' + 1;
+
+      windowHash = (windowHash - (charOut * power[m - 1]) % MOD + MOD) % MOD;
+      windowHash = ((windowHash * base) + charIn) % MOD;
+
+      if (windowHash == patternHash && checkStrings(pattern, text, i))
         indices.push_back(i);
     }
     return indices;
