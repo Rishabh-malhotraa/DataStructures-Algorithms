@@ -97,9 +97,7 @@ public:
                     return true;
                 
             }
-            
             visited.erase(i);
-            
         }
         
         if (visited.size() == nums.size()) {
@@ -123,45 +121,45 @@ public:
         
     }
 
-            /*
-            1 + 2 X 3 * 4
-                    X
-            currSum = 0;
-            previousSum = 0;
-            
-            
-            1 + (2 - 1) X 3) * 4
-            
-            2 - 1 * 5   => 10
-            
-            currSum => 2 
-            previousNum = -1
-            */
+/*
+1 + 2 X 3 * 4
+        X
+currSum = 0;
+previousSum = 0;
 
-                    /*
-                    two cases: 
-                        follow prcesdence
-                        
-                        2 - 1 * 5
-                        currSum = 2
-                        previous = -1*5 
-                        
-                        currSum = -3
-                        
-                        
-                        currSUm = 2
-                        
-                        currSUm = (currSum + previous) * nums[i]
-                        
-                        1 2 3 4 5 1
-                        
-                        isReachableHelper(0) -> [+-/*] 
-                                                  -> isReachableHelper(1)
-                                                                   ->  isReachableHelper(2)
-                                                                   
-                                                                   
-                      2 3 5 4
-                      
-                      2 -> [5]                                             
-                        
-                    */
+
+1 + (2 - 1) X 3) * 4
+
+2 - 1 * 5   => 10
+
+currSum => 2 
+previousNum = -1
+*/
+
+/*
+two cases: 
+    follow prcesdence
+    
+    2 - 1 * 5
+    currSum = 2
+    previous = -1*5 
+    
+    currSum = -3
+    
+    
+    currSUm = 2
+    
+    currSUm = (currSum + previous) * nums[i]
+    
+    1 2 3 4 5 1
+    
+    isReachableHelper(0) -> [+-/*] 
+                                -> isReachableHelper(1)
+                                                ->  isReachableHelper(2)
+                                                
+                                                
+    2 3 5 4
+    
+    2 -> [5]                                             
+    
+*/
