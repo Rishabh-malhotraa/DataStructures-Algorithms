@@ -1,1 +1,46 @@
+# C++ build artifacts
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.dll
 *.exe
+*.out
+**/index.cpp
+main.cpp
+
+# Compiled dynamic libraries
+*.dylib
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Build directories
+/build/
+/bin/
+/Debug/
+/Release/
+
+# VSCode settings
+.vscode/
+*.code-workspace
+
+# Backup files
+*~
+*.swp
+*.swo
+
+# Logs and dumps
+*.log
+*.dmp
+
+# macOS-specific
+.DS_Store
+
+# Windows-specific
+Thumbs.db
+desktop.ini

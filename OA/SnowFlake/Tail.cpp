@@ -8,12 +8,7 @@ public:
     fileName = fileDescriptor, CHUNK_SIZE = bufferSize;
 
     file.open(fileName, ios::in);
-
-    stringstream ss;
-    ss << file.rdbuf();
-    cout << ss.str() << endl;
     file.seekg(0, std::ios::end);
-
   }
 
   ~FileTailReader() {
@@ -70,5 +65,15 @@ int main() {
 
   cout << f.tail(n) << endl;;
 }
+
+
+class FileReader{
+  void file(string fileName) {
+    ifstream file(fileName, ios::in);
+    string buffer;
+    file.read(buffer.data(), 10);
+
+  }
+};
 
 
