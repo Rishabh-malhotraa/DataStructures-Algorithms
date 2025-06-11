@@ -54,7 +54,7 @@ desktop.ini
 *.txt
 
 # Visual Studio Code configuration
-.vscode/
+# .vscode/
 
 # C++ build artifacts
 *.o
