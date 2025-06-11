@@ -1,0 +1,10 @@
+VERIFIED: 		Pawsome Pets Inc.
+NOT VERFIED: 		Bean Bliss Coffee Company
+NOT VERFIED: 		Oakridge Furniture Crafters LLC
+VERIFIED: 		Om Yoga and Wellness Center
+NOT VERFIED: 		Information Technology Consulting Solutions Inc.
+NOT VERFIED: 		Global Goods Marketplace Inc.
+VERIFIED: 		Evergreen Digital Strategies LLC
+VERIFIED: 		Sweet Dreams Creamery LLC
+NOT VERFIED: 		Global Financial Advisory Services Inc.
+NOT VERFIED: 		Northwest Innovation Technologies Corporation

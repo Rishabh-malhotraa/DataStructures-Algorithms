@@ -51,7 +51,6 @@ desktop.ini
 *.out
 *.dSYM/
 *.yml
-*.txt
 
 # Visual Studio Code configuration
 # .vscode/
@@ -63,7 +62,6 @@ desktop.ini
 *.out
 *.a
 *.so
-*.log
 
 # Ignore all Info.plist files in debug output folders
 **/*.dSYM/Contents/Info.plist
