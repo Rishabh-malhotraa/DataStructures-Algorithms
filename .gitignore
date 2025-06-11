@@ -44,3 +44,29 @@ Makefile
 # Windows-specific
 Thumbs.db
 desktop.ini
+# macOS system files
+.DS_Store
+
+# Build output and debug symbol folders
+*.out
+*.dSYM/
+*.yml
+*.txt
+
+# Visual Studio Code configuration
+.vscode/
+
+# C++ build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.log
+
+# Ignore all Info.plist files in debug output folders
+**/*.dSYM/Contents/Info.plist
+
+# Ignore all debug index and relocation files
+**/*.dSYM/Contents/Resources/**
